@@ -8,7 +8,7 @@ function parseTitleAndGuest(title: string): {
   displayTitle: string;
   guest: string;
 } {
-  let cleaned = title.replace(/^\d{4}/, "").trim();
+  const cleaned = title.replace(/^\d{4}/, "").trim();
 
   let guest = "";
   let articleTitle = "";
