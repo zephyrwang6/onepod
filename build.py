@@ -260,10 +260,11 @@ def main():
     podcasts.sort(key=lambda x: x["dateCode"], reverse=True)
 
     output = json.dumps(podcasts, ensure_ascii=False, indent=2)
-    with open("podcasts.json", "w", encoding="utf-8") as f:
+    out_path = os.path.join(os.path.dirname(__file__), "src", "podcasts.json")
+    with open(out_path, "w", encoding="utf-8") as f:
         f.write(output)
 
-    print(f"\nDone! Generated podcasts.json with {len(podcasts)} entries", file=sys.stderr)
+    print(f"\nDone! Generated {out_path} with {len(podcasts)} entries", file=sys.stderr)
 
 
 if __name__ == "__main__":
