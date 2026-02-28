@@ -1,6 +1,2 @@
 [build]
-  command = "pip install requests && python3 build.py && npm run build"
-  publish = "out"
-
-[functions]
-  directory = "netlify/functions"
+  command = "npm run build"
