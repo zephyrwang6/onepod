@@ -1,2 +1,3 @@
 [build]
-  command = "npm run build"
+  command = "python3 build.py && npm run build"
+  publish = "out"

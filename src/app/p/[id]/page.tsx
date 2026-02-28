@@ -10,9 +10,7 @@ import Panel from "@/components/Panel";
 import ArticleCard from "@/components/ArticleCard";
 import MobileHeader from "@/components/MobileHeader";
 
-export const revalidate = 300; // 5 minutes
-
-export const dynamicParams = true; // Allow new podcasts not in generateStaticParams
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const podcasts = await getAllPodcasts();
