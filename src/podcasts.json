@@ -1,5 +1,138 @@
 [
   {
+    "id": "FKPZw2mXeiJIbWkYtkjckV9LnRb",
+    "title": "Ian Fischer X Y Combinator：7人团队超越OpenAI的脚手架秘密",
+    "rawTitle": "0228：Ian Fischer X Y Combinator：7人团队超越OpenAI的脚手架秘密",
+    "dateCode": "0228",
+    "youtubeId": "UPGB-hsAoVY",
+    "feishuUrl": "https://my.feishu.cn/wiki/FKPZw2mXeiJIbWkYtkjckV9LnRb",
+    "intro": [
+      "今天看到 Ian Fischer 去了 Y Combinator Lightcone 的播客。",
+      "Ian Fischer 是 Poetic 的联合创始人兼 CEO，前 Google DeepMind 研究员，团队仅 7 人。他们在 ARC-AGI 和 Humanity's Last Exam 基准上超越了 OpenAI 和 Anthropic。",
+      "这期播客总共录了约 20 分钟，Ian 谈到了 12 个有趣的观点：",
+      "1、Poetic 做的是递归自我改进系统——让 AI 自己优化自己。这被认为是 AI 的\"圣杯\"，但他们用远低于训练新模型的成本做到了（不到 10 万美元 vs 数百亿美元）。",
+      "2、Fine-tuning 是\"燃烧的钱\"。初创公司花数百万微调后，新一代基础模型发布，一切归零。你永远追不上 Anthropic 和 OpenAI 的发布节奏。",
+      "3、他们的系统叫\"脚手架\"（Stilts）——坐在基础模型上面的推理系统。当你站在脚手架上，任何新模型发布，你都能变得比它更高。",
+      "4、ARC-AGI V2 发布时，Google Gemini Deep Think 以 45% 领先。两天后 Poetic 用 Gemini 3 Pro（更便宜的模型）+ 脚手架达到 54%，成本只有对手一半。",
+      "5、最近他们在 Humanity's Last Exam（2500 道各领域 PhD 级别难题）达到 55%，超越 Anthropic Claude Opus 4.6 的 53.1%。而且成本不到 10 万美元。",
+      "6、团队只有 7 人——全是研究科学家和研究工程师。这是典型的小团队 AGI 研究模式。",
+      "7、传统 ML 范式是你必须非常了解数据集，但他们在把这个过程外包给 AI——让 AI 自己找出失败模式，自己构建推理策略。",
+      "8、他们的系统不只是优化 prompts，还包括推理策略、代码结构、上下文填充、总结方式——是整个\"推理系统\"的优化。",
+      "9、他们发表过一篇论文，手动优化 Gemini 1.5 Flash 从 5% 提升到 95%——关键是加入推理策略（reasoning strategies），不是更好的 prompt。",
+      "10、对于初创公司，脚手架范式意味着：你的 agent 不再绑定某个特定模型，可以随着基础模型进化而自动进化。",
+      "11、他对工程师的建议：每天都要用 AI 做事，push 自己找到模型的能力边界。8 个月前用 GPT-5 写 iOS app 已很简单，现在更容易。",
+      "12、这代表着与 RL（强化学习）完全不同的新范式——不是训练新模型，而是优化\"如何使用模型\"。"
+    ],
+    "highlights": [
+      "断断续续看完这期 Poetic 的访谈，干货密度太高了。",
+      "Ian Fischer 之前在 Google DeepMind 做了十年机器学习研究，后来自己创业。之前做的是移动开发工具公司（被 Google 收购），后来决定转向 AI。",
+      "这期的主题非常有意思：小团队如何用\"脚手架\"超越大公司的基础模型。"
+    ],
+    "fullText": "今天看到 Ian Fischer 去了 Y Combinator Lightcone 的播客。\nIan Fischer 是 Poetic 的联合创始人兼 CEO，前 Google DeepMind 研究员，团队仅 7 人。他们在 ARC-AGI 和 Humanity's Last Exam 基准上超越了 OpenAI 和 Anthropic。\n这期播客总共录了约 20 分钟，Ian 谈到了 12 个有趣的观点：\n1、Poetic 做的是递归自我改进系统——让 AI 自己优化自己。这被认为是 AI 的\"圣杯\"，但他们用远低于训练新模型的成本做到了（不到 10 万美元 vs 数百亿美元）。\n2、Fine-tuning 是\"燃烧的钱\"。初创公司花数百万微调后，新一代基础模型发布，一切归零。你永远追不上 Anthropic 和 OpenAI 的发布节奏。\n3、他们的系统叫\"脚手架\"（Stilts）——坐在基础模型上面的推理系统。当你站在脚手架上，任何新模型发布，你都能变得比它更高。\n4、ARC-AGI V2 发布时，Google Gemini Deep Think 以 45% 领先。两天后 Poetic 用 Gemini 3 Pro（更便宜的模型）+ 脚手架达到 54%，成本只有对手一半。\n5、最近他们在 Humanity's Last Exam（2500 道各领域 PhD 级别难题）达到 55%，超越 Anthropic Claude Opus 4.6 的 53.1%。而且成本不到 10 万美元。\n6、团队只有 7 人——全是研究科学家和研究工程师。这是典型的小团队 AGI 研究模式。\n7、传统 ML 范式是你必须非常了解数据集，但他们在把这个过程外包给 AI——让 AI 自己找出失败模式，自己构建推理策略。\n8、他们的系统不只是优化 prompts，还包括推理策略、代码结构、上下文填充、总结方式——是整个\"推理系统\"的优化。\n9、他们发表过一篇论文，手动优化 Gemini 1.5 Flash 从 5% 提升到 95%——关键是加入推理策略（reasoning strategies），不是更好的 prompt。\n10、对于初创公司，脚手架范式意味着：你的 agent 不再绑定某个特定模型，可以随着基础模型进化而自动进化。\n11、他对工程师的建议：每天都要用 AI 做事，push 自己找到模型的能力边界。8 个月前用 GPT-5 写 iOS app 已很简单，现在更容易。\n12、这代表着与 RL（强化学习）完全不同的新范式——不是训练新模型，而是优化\"如何使用模型\"。\n断断续续看完这期 Poetic 的访谈，干货密度太高了。\nIan Fischer 之前在 Google DeepMind 做了十年机器学习研究，后来自己创业。之前做的是移动开发工具公司（被 Google 收购），后来决定转向 AI。\n这期的主题非常有意思：小团队如何用\"脚手架\"超越大公司的基础模型。\n#01 脚手架的诞生\n主持人： 什么是 Poetic？和 RL 有什么区别？\nIan： 我们做的是递归自我改进系统——让 AI 自己让自己变得更聪明。核心洞察是，我们可以比任何其他方式更快、更便宜地实现递归自我改进。\n其他方法都需要从零训练新 LLM，成本是数百亿美元、耗时几个月。而 Anthropic 或 OpenAI 下一版模型发布，你的成果就过时了。\n主持人： 这是初创公司最想要的东西。你刚说的 Bitter Lesson——如果没有 Poetic，你们会怎么做？\nIan： 通常是：先收集数万条特定问题的数据，花大钱微调 frontier model。然后新模型发布，一切归零。你做的是重复烧钱。\n有了 Poetic，你得到的是一个\"脚手架\"——坐在模型上面的推理系统。当新模型发布，你的脚手架继续可用，性能提升更明显。成本还低得多。\n#02 超越 Gemini 和 Claude\n主持人： 你们在 ARC-AGI 的成绩真的很疯狂。\nIan： Gemini 3 Deep Think 发布时达到 45%，两天后我们用更便宜的 Gemini 3 Pro + 脚手架达到 54%。成本只有 32 美元/题 vs 70 美元。\n主持人： Humanity's Last Exam 呢？\nIan： 2500 道各领域 PhD 级别难题。之前 Anthropic Claude Opus 4.6 是 53.1%。我们达到 55%。关键是成本不到 10 万美元——而每次基础模型训练都是数百亿。\n#03 7人团队的秘诀\n主持人： 你们只有 7 个人？\nIan： 对，7 个研究科学家和研究工程师。\n主持人： 这真的很反直觉。现在 AI 圈都在堆算力，你们用小团队做到这个？\nIan： 我们把过去需要人来做的工作——优化 evals、调整 prompts、上下文工程——全部自动化了。系统自己找出失败模式，自己构建推理策略。\n我们不手动查看数据——是 AI 在看数据，然后告诉我们需要什么。\n#04 对工程师的建议\nIan： 我的建议就是——每天都要用 AI 做事。我去年周末用 GPT-5 帮我写了一个 iOS app，十年没做这个了。八个月前的事，现在已经更容易了。\n不要设限——想象任何你想做的事，用 AI 试试能走多远。你会惊讶于能做到什么。\n用 Ian 的话收个尾：\"不要限制自己。想象任何你想做的事，用 AI 试试能走多远，你会让世界变得更好。\"\n这是完全不同的范式——不是训练更贵的模型，而是优化\"如何使用模型\"。脚手架让任何 Agent 公司都能站在基础模型的肩膀上，而且自动进化。\nYouTube 链接：https://www.youtube.com/watch?v=UPGB-hsAoVY\n",
+    "ytTitle": "The Powerful Alternative To Fine-Tuning",
+    "ytChannel": "Y Combinator",
+    "ytChannelUrl": "https://www.youtube.com/@ycombinator",
+    "ytViews": null,
+    "ytPublished": null
+  },
+  {
+    "id": "HPZwwRr3Kickp9kIJihcozTjnmc",
+    "title": "Max-Welling-所有问题的底层都是材料问题",
+    "rawTitle": "0227-Max-Welling-所有问题的底层都是材料问题",
+    "dateCode": "0227",
+    "youtubeId": "V7_Ec2WFAWs",
+    "feishuUrl": "https://my.feishu.cn/wiki/HPZwwRr3Kickp9kIJihcozTjnmc",
+    "intro": [
+      "断断续续，终于看完了 Max Welling 这期播客。",
+      "Max Welling 是 AI 圈子的老朋友了——variational autoencoders（VAE）的奠基人之一，graph neural networks 和 equivariant neural networks 的先驱，前 UC Amsterdam 教授，现在是 AI for Science 创业公司 CUSAI 的联合创始人。",
+      "这期播客信息密度极高，探讨了 AI 与物理学的交汇、为什么 AI for Science 现在爆发、材料的未来，以及他即将出版的新书。干货太多，我今天不忙，把这次访谈精编出来，供大家学习。赠人玫瑰，手有余香。",
+      "下面是 YouTube 链接：https://www.youtube.com/watch?v=V7_Ec2WFAWs"
+    ],
+    "highlights": [
+      "编辑补充： 这期播客让我印象最深的不是具体的技术细节，而是 Max 那个核心洞察——\"underlying almost everything is a material\"。我们讨论 AI 写代码、AI 画画、AI 聊天，但很少有人想到这些 AI 系统的物理载体。GPU 需要先进制程，制程需要光刻机，光刻机需要极紫外光技术——每一个环节都是材料科学问题。AI 的尽头是物理，物理的尽头是材料。这条思路值得每个 AI 从业者思考。"
+    ],
+    "fullText": "断断续续，终于看完了 Max Welling 这期播客。\nMax Welling 是 AI 圈子的老朋友了——variational autoencoders（VAE）的奠基人之一，graph neural networks 和 equivariant neural networks 的先驱，前 UC Amsterdam 教授，现在是 AI for Science 创业公司 CUSAI 的联合创始人。\n这期播客信息密度极高，探讨了 AI 与物理学的交汇、为什么 AI for Science 现在爆发、材料的未来，以及他即将出版的新书。干货太多，我今天不忙，把这次访谈精编出来，供大家学习。赠人玫瑰，手有余香。\n下面是 YouTube 链接：https://www.youtube.com/watch?v=V7_Ec2WFAWs\n#01 从量子引力到 AI for Science：物理才是那条隐藏的线索\n主持人：Max，你的研究生涯跨越了量子引力、变分自编码器、等变神经网络、还有现在的材料科学。这些看似不相关的领域，背后有什么共同的线索？\nMax Welling： 物理是我职业生涯的那条线索。\n年轻的时候，我追随自己的直觉——对什么问题感到兴奋，就去研究什么。我对量子引力感兴趣，对黑洞内部好奇，对量子力学的本质着迷。那时候我觉得\"影响力\"不重要，做纯理论就好。\n但随着年纪增长，我开始思考 impact（影响力）。量子引力研究在可预见的未来不会有任何实际影响。我开始担心气候变化，觉得应该从技术角度做点什么。这就是创立 CUSAI 的原因——把 AI 用于材料科学，帮助能源转型。\n但物理始终是那条线。 从量子引力到等变神经网络，看起来跨度大，其实都是关于对称性（symmetry）的数学工具。粒子物理学、广义相对论、机器学习——对称性在所有这些领域都扮演核心角色。\n> \"物理学一直是那条隐藏的线索。我试图把物理学的思维方式应用到机器学习，构建更好的算法。\"\n#02 为什么是现在？AI for Science 为何突然爆发\n主持人：AI for Science 现在投资爆炸，Jeff Bezos 的公司刚融了 62 亿美元。这是泡沫还是真的到了临界点？\nMax Welling： 有两个原因。\n第一，工具成熟了。 我们有了真正强大的 AI 工具可以应用到科学问题。最成功的例子是蛋白质折叠（AlphaFold），另一个是机器学习力场（machine learning force fields）。这两个领域已经证明了 AI 的价值。\n第二，时机到了。 我们现在真的可以有效地模拟这些系统，推动科学方法的进步。这是一个独特的时刻——就像一片未开发的荒原，没人去过，你可以冲进去\"收割\"。\n> \"我们正处于一个临界点——这是真正的变革时刻，不是泡沫。人们正在看到真实的成果。\"\n#03 底层都是材料问题：LLM 的尽头是 GPU，GPU 的尽头是材料\nMax Welling： 我想传达一个观点——底层一切都是材料。\n我们现在都在讨论 LLM，这是软件层。但 LLM 运行在 GPU 上，GPU 底层是晶圆，晶圆上需要沉积材料。需要 EUV 光刻来刻蚀结构——这本身就是材料问题。\n我们现在已经达到了摩尔定律的极限，要继续进步，需要新材料。\n能源转型也是同样的道理：\n• 电池是材料问题\n• 燃料电池是材料问题\n• 太阳能板（钙钛矿叠层）也是材料问题\n> \"无论你做什么，往深处挖，最终都是一个材料问题。塑料污染地球？如果能发明一种几个月后能自我分解、变成肥料的塑料，这些都可以做到。\"\n#04 CUSAI 的野心：做\"物理处理单元\"PPUs\n主持人：CUSAI 现在在做什么？\nMax Welling： CUSAI 成立 20 个月了，目前 40 人，融资 1.3 亿美元。我们正在构建一个 AI for Science 平台。\n我的愿景是：物理处理单元（Physics Processing Units，PPU）。\n就像有数字处理单元（CPU/GPU），未来会有物理处理单元——让自然帮我们计算。\n这是已知的最快的计算机——大自然。但难点是\"编程\"大自然，你需要做实验。\n> \"你可以数据中心里做计算，然后让自然帮你做计算。接口更复杂，但两者需要无缝协作，找到你感兴趣的新材料。\"\n平台工作方式：\n生成阶段：训练模型生成候选材料\n数字孪生阶段：多尺度、多保真度的模拟，先做便宜的计算，排除明显没用的，层层筛选\n实验阶段：最后送到实验室验证\n现在我们在加入 Agent。 有文献搜索 Agent，有自动编排计算和实验的 Agent。越来越自动化。\n> \"我们的护城河不是火箭科学，而是数据——你能获取什么数据，以及平台本身的建设。\"\n#05 人类不会被淘汰：增强而非取代\n主持人：你们最终会完全自动化，让人类退出这个循环吗？\nMax Welling： 我的愿景不是\"黑灯实验室\"——关上门，AI 自己发现有趣的材料。那不是我的愿景。\n我的愿景是赋能领域专家。 化学家和材料科学家坐在公司里，因为 AI 的帮助，可以快得多地开发材料。\n一开始需要专家告诉 AI 如何设置参数（DFT 计算等）。我们逐步自动化这些环节。但最终，化学家仍然会决定什么是好材料、什么不是。\n> \"我的愿景是赋予领域专家更强大的工具，而不是取代他们。这个过程会很慢，需要人类在环，因为问题非常垂直。\"\n#06 等变神经网络：为什么对称性这么重要\n主持人：能简单解释一下 equivariance（等变性）吗？\nMax Welling： 等变性是把对称性注入神经网络。\n如果一个神经网络需要识别一个瓶子，然后你旋转瓶子——没有等变性的网络需要重新训练，因为它\"不认识\"旋转后的瓶子。\n等变性意味着：一旦训练好一个方向，它就理解所有方向。这意味着训练数据量大幅减少。\n> \"等变性是对权重的约束，让网络理解旋转、置换等对称性。这是把物理学的对称性思想引入机器学习。\"\n但这里有复杂的权衡。 有时候数据增强效果更好，因为约束太紧会增加优化难度。最终是数据量与归纳偏置之间的权衡——这 就是机器学习的\"苦涩教训\"（Bitter Lesson）。\n#07 新书预告：生成 AI 与随机热力学的数学联系\n主持人：你即将出版的新书关于什么？\nMax Welling： 书名叫《Generative AI and Stochastic Thermodynamics》。\n这本书揭示了一个惊人的事实：生成 AI（扩散模型等）的数学，与非平衡统计力学（stochastic thermodynamics）的数学是完全一样的。\n两者都涉及：\n• 变分自由能（variational free energy）\n• Langevin 动力学\n• 扩散过程\nJeff Hinton 和 Radford Neil 很久以前就在机器学习中引入了变分自由能。物理学家那边也在发展随机热力学。现在我们发现它们是同一套数学！\n> \"这非常迷人。两个领域的数学完全相同，但来自完全不同的背景。这是真正的跨学科交叉。\"\n#08 给非科学家的话：为什么你应该关注 AI for Science\n主持人：如果你不是科学家，怎么参与这个领域？\nMax Welling： 读我的书（笑）。但更重要的是——你已经在其中了。\n你用的手机、GPU、电脑——底层都是材料问题。AI for Science 影响的不仅是最前沿的科学研究，而是整个技术栈。\n> \"underlying almost everything is a material（底层几乎所有东西都是材料）。\"\n编辑补充： 这期播客让我印象最深的不是具体的技术细节，而是 Max 那个核心洞察——\"underlying almost everything is a material\"。我们讨论 AI 写代码、AI 画画、AI 聊天，但很少有人想到这些 AI 系统的物理载体。GPU 需要先进制程，制程需要光刻机，光刻机需要极紫外光技术——每一个环节都是材料科学问题。AI 的尽头是物理，物理的尽头是材料。这条思路值得每个 AI 从业者思考。\n",
+    "ytTitle": "🔬Max Welling: Materials Underlie Everything",
+    "ytChannel": "Latent Space",
+    "ytChannelUrl": "https://www.youtube.com/@LatentSpacePod",
+    "ytViews": null,
+    "ytPublished": null
+  },
+  {
+    "id": "H7xbw9bPJigwF7k5YVMcIonynnf",
+    "title": "Alex Mathew X Stanford GSB：17岁AI原住民正在重新定义学习和创业",
+    "rawTitle": "0226：Alex Mathew X Stanford GSB：17岁AI原住民正在重新定义学习和创业",
+    "dateCode": "0226",
+    "youtubeId": "n-xBQE8A-3E",
+    "feishuUrl": "https://my.feishu.cn/wiki/H7xbw9bPJigwF7k5YVMcIonynnf",
+    "intro": [
+      "今天看到 Alex Mathew 去了 Stanford GSB 的 \"AI & I\" 播客。",
+      "Alex 是德州奥斯汀 Alpha High School 的17岁高三学生，这所学校没有传统老师，学生通过 AI 平台学习所有学术内容。他同时是一名创业者，正在开发 AI 毛绒玩具 Barry，目标是成为下一个 Build-A-Bear。",
+      "这期播客谈到了 13 个有趣的观点：",
+      "1、没有老师的学校。Alpha School 没有传统意义上的\"老师\"，只有\"guides\"（导师），他们的角色不是教授知识，而是激励学生、提供情感支持、帮助学生规划目标。知识传授完全由 AI 平台完成。",
+      "2、AI 不是聊天机器人，而是后台的学习定制引擎。Alex 强调他们不是和 ChatGPT 聊天学习，而是 AI 在后台分析每个学生的差距，定制化推送学习内容——视频、文章、测验的组合。",
+      "3、掌握式学习（Mastery-based learning）。测验从 0% 开始，学生需要达到 80% 掌握度才能进入下一单元。这种\"从零到精通\"的模式确保真正理解，而不是应付考试。",
+      "4、学习进度可以谈判。Alex 可以和导师 negotiate：如果他现在完成学期 A，就可以去旧金山全职做项目 20 天，回来后完成学期 B，仍然能获得高中学分并进入梦想大学。这种灵活性是传统学校无法想象的。",
+      "5、番茄工作法成为日常。27 分钟专注学习 + 5 分钟休息，没有传统课间休息。学生可以在休息时去咖啡店、杂货店，或者和朋友交流。",
+      "6、AI 工具的个人排名。Alex 给主流 AI 排名：Claude 是 S 级（信任 Anthropic 的研究方法和领导层），ChatGPT 第二（深度研究最强），Gemini 和 Grok 并列（Gemini 3 很酷，Grok 敢于尝试）。",
+      "7、不读纸质书的逻辑。Alex 不读传统书籍，认为静态知识不如动态对话有价值。他用 Grok 语音模式辅助阅读，认为\"如果只是为了内容，为什么不直接和 AI 对话？\"",
+      "8、社交媒体的矛盾态度。他认为社交媒体\"100%腐蚀了\"年轻一代的大脑（过度刺激、注意力分散、与他人比较），但承认它也有好处：思想交流（Matt Ridley 的\"idea sex\"）和朋友间的连接方式。",
+      "9、Gen Z 对 AI 的复杂态度。50% 悲观（担心环境、就业、AI 取代人类），25% 不确定，25% 乐观。但矛盾的是，70-75% 的人仍在使用 AI，72% 的青少年用过 AI 陪伴，52% 几乎每天使用。",
+      "10、AI 不会取代人类连接，而是帮助建立自我意识。Alex 的创业项目 Barry 是一个 AI 毛绒玩具，帮助青少年处理日常心理问题。他的理念不是让 AI 取代人类，而是给用户一个安全的空间来练习脆弱性和自我觉察。",
+      "11、大学规划的三条路径思维。Alex 考虑三条路：传统顶尖大学（哈佛、伯克利）、替代大学（如 University of Austin）、直接创业（如 Thiel Fellowship）。他的目标是\"优化保留所有决策可能性\"。",
+      "12、学校像霍格沃茨分学院。Alpha School 有类似霍格沃茨的\"house\"系统，Alex 在 Sparta（斯巴达）学院——专为专注项目、想要\" ramp it up\"的学生设计。学生甚至参与雇佣和解雇导师，Alex 说：\"我对导师选择非常挑剔，大多数都被我拒绝了。\""
+    ],
+    "highlights": [
+      "断断续续，终于看完了 Stanford GSB 这期对17岁高中生 Alex Mathew 的采访。",
+      "干货很多。Alex 可能是 AI 时代\"原住民\"的最佳样本——他不是在使用 AI 工具，而是在一个由 AI 驱动的学习生态中长大。他的思维模式、学习方式、创业路径，都和上一代\"AI 移民\"截然不同。",
+      "我今天不忙，把这次访谈全文精编出来，供大家学习。赠人玫瑰，手有余香。",
+      "下面是 YouTube 链接：https://www.youtube.com/watch?v=n-xBQE8A-3E"
+    ],
+    "fullText": "今天看到 Alex Mathew 去了 Stanford GSB 的 \"AI & I\" 播客。\nAlex 是德州奥斯汀 Alpha High School 的17岁高三学生，这所学校没有传统老师，学生通过 AI 平台学习所有学术内容。他同时是一名创业者，正在开发 AI 毛绒玩具 Barry，目标是成为下一个 Build-A-Bear。\n这期播客谈到了 13 个有趣的观点：\n1、没有老师的学校。Alpha School 没有传统意义上的\"老师\"，只有\"guides\"（导师），他们的角色不是教授知识，而是激励学生、提供情感支持、帮助学生规划目标。知识传授完全由 AI 平台完成。\n2、AI 不是聊天机器人，而是后台的学习定制引擎。Alex 强调他们不是和 ChatGPT 聊天学习，而是 AI 在后台分析每个学生的差距，定制化推送学习内容——视频、文章、测验的组合。\n3、掌握式学习（Mastery-based learning）。测验从 0% 开始，学生需要达到 80% 掌握度才能进入下一单元。这种\"从零到精通\"的模式确保真正理解，而不是应付考试。\n4、学习进度可以谈判。Alex 可以和导师 negotiate：如果他现在完成学期 A，就可以去旧金山全职做项目 20 天，回来后完成学期 B，仍然能获得高中学分并进入梦想大学。这种灵活性是传统学校无法想象的。\n5、番茄工作法成为日常。27 分钟专注学习 + 5 分钟休息，没有传统课间休息。学生可以在休息时去咖啡店、杂货店，或者和朋友交流。\n6、AI 工具的个人排名。Alex 给主流 AI 排名：Claude 是 S 级（信任 Anthropic 的研究方法和领导层），ChatGPT 第二（深度研究最强），Gemini 和 Grok 并列（Gemini 3 很酷，Grok 敢于尝试）。\n7、不读纸质书的逻辑。Alex 不读传统书籍，认为静态知识不如动态对话有价值。他用 Grok 语音模式辅助阅读，认为\"如果只是为了内容，为什么不直接和 AI 对话？\"\n8、社交媒体的矛盾态度。他认为社交媒体\"100%腐蚀了\"年轻一代的大脑（过度刺激、注意力分散、与他人比较），但承认它也有好处：思想交流（Matt Ridley 的\"idea sex\"）和朋友间的连接方式。\n9、Gen Z 对 AI 的复杂态度。50% 悲观（担心环境、就业、AI 取代人类），25% 不确定，25% 乐观。但矛盾的是，70-75% 的人仍在使用 AI，72% 的青少年用过 AI 陪伴，52% 几乎每天使用。\n10、AI 不会取代人类连接，而是帮助建立自我意识。Alex 的创业项目 Barry 是一个 AI 毛绒玩具，帮助青少年处理日常心理问题。他的理念不是让 AI 取代人类，而是给用户一个安全的空间来练习脆弱性和自我觉察。\n11、大学规划的三条路径思维。Alex 考虑三条路：传统顶尖大学（哈佛、伯克利）、替代大学（如 University of Austin）、直接创业（如 Thiel Fellowship）。他的目标是\"优化保留所有决策可能性\"。\n12、学校像霍格沃茨分学院。Alpha School 有类似霍格沃茨的\"house\"系统，Alex 在 Sparta（斯巴达）学院——专为专注项目、想要\" ramp it up\"的学生设计。学生甚至参与雇佣和解雇导师，Alex 说：\"我对导师选择非常挑剔，大多数都被我拒绝了。\"\n13、理性乐观主义。Alex 认为人们对 AI 悲观是因为\"不确定\"。他主张\"理性乐观\"——AI 不会取代人类，而是让人类专注于情感连接、脆弱性、情商、品味等独特价值。\"我只是对未来如此乐观，真的很兴奋能活在现在。\"\n断断续续，终于看完了 Stanford GSB 这期对17岁高中生 Alex Mathew 的采访。\n干货很多。Alex 可能是 AI 时代\"原住民\"的最佳样本——他不是在使用 AI 工具，而是在一个由 AI 驱动的学习生态中长大。他的思维模式、学习方式、创业路径，都和上一代\"AI 移民\"截然不同。\n我今天不忙，把这次访谈全文精编出来，供大家学习。赠人玫瑰，手有余香。\n下面是 YouTube 链接：https://www.youtube.com/watch?v=n-xBQE8A-3E\n## #01 没有老师的学校\nDan： walk me through your day. Like I don't understand. You're saying \"we\" — are you involved in Alpha school or you just go to Alpha school?\nAlex：I just go to Alpha school but I say \"we\" because every quarter we get a survey and we give feedback on everything. Every day I'm giving feedback to the guides.\nDan：Okay. So let's say it's 8 a.m. What's your first hour like?\nAlex：So actually the first 15 minutes is what we like to call like Tony Robbins for kids. It's like getting energized, doing like a puzzle, whatever. We just want you to kind of transition from home life to school life.\nDan：And you're in a class with how many people?\nAlex：So, the total high school is around 50 people. My senior year class is only eight people. So, it's pretty small.\nDan：And how are teachers involved? And you call them guides not teachers?\nAlex：Yes, we call them guides not teachers. The role of a teacher right now is like they're doing five different things. They are talking to parents. They're trying to teach the content. They're trying to grade the papers. They're trying to help people be motivated. They're doing so many different things. And so the goal of Alpha is to just create a new role for each individual thing. So there's like a dean of parents to deal with parents. And then obviously the content is taught by AI. And now the role of the guide is just solely focused on motivating students, giving them emotional support, and helping them figure out what they want to do.\n我觉得这个点真的太重要了。 传统学校老师的角色被拆解了——知识传授给 AI，行政事务给专门的 dean，导师只负责一件事：激励和情感支持。这种专业化分工可能是教育的未来方向。\n## #02 AI 不是聊天机器人\nDan：Who's telling you which one to do, though?\nAlex：So, that's um every week you'll have a meeting with your guide, and you're like, \"Here's where I'm at with all my courses. I'm good at math, so I'm like 88% through my math course... but I'm really bad at reading.\" And so, we'll set custom XP or goals to see what we need to hit by the end of the week.\nDan：Can I see it? Can you just show me?\nAlex：Totally. So there's a little dashboard here and it basically has a toggle of all of my courses... right now I'm on AP psychology. I'm a bit through unit one. And it's just like here's what you have to do next... mix of again video, reading quiz, video.\nDan：And we consider mastery to be above an 80% mastery score because that's like enough to to be able to move on.\n这太有意思了。 很多人以为 AI 教育就是和 ChatGPT 聊天，但 Alex 强调\"我们根本没有 AI 聊天导师\"。真正的 AI 教育是在后台分析、定制、推送——视频、文章、测验的组合，根据每个学生的掌握程度动态调整。\n## #03 学习进度可以谈判\nAlex：The big thing about Alpha is we want to measure everything to make sure that you're actually getting the experience you deserve. And I will be honest, it's like 90% motivation, 10% edtech.\n...in 20 days, I'm going to go fly out to San Francisco to work on my project full-time, and I'm able to negotiate with my guides. If I submit finish semester A now, I can come back from the trip, finish semester B, and still have my high school credit and get into my dream college.\nDan：That's really interesting. Okay. So like walk me through your day.\n天哪，这种灵活性。 想象一下：一个高中生可以和学校\"谈判\"，提前完成学期 A，去旧金山全职做项目 20 天，回来后完成学期 B，仍然能毕业并进入梦想大学。这种\"学习围绕人生目标调整\"的模式，和传统\"人生围绕学校调整\"完全相反。\n## #04 AI 工具的个人排名\nDan：If you had to rank all of t",
+    "ytTitle": "How a 17-Year-Old Is Learning in the Age of AI",
+    "ytChannel": "Every",
+    "ytChannelUrl": "https://www.youtube.com/@EveryInc",
+    "ytViews": null,
+    "ytPublished": null
+  },
+  {
+    "id": "PsGqwsYppiDM9JkXwRCc3F0Hndg",
+    "title": "James Cadwallader X Latent Space：AI正在杀死SEO，品牌可见性的新战场是AI如何谈论你",
+    "rawTitle": "0226：James Cadwallader X Latent Space：AI正在杀死SEO，品牌可见性的新战场是AI如何谈论你",
+    "dateCode": "0226",
+    "youtubeId": "WhF_CIGHtk4",
+    "feishuUrl": "https://my.feishu.cn/wiki/PsGqwsYppiDM9JkXwRCc3F0Hndg",
+    "intro": [
+      "今天看到 James Cadwallader 去了 Latent Space 的 \"The Investment Memo\" 播客。",
+      "James 是 Profound 的联合创始人兼 CEO，这家公司成立不到2年，团队已超过100人，被10%的财富500强公司使用（包括 MongoDB、Ramp、Chime）。Profound 是首个专门为追踪 AI 时代品牌可见性而构建的平台。",
+      "这期播客谈到了 13 个有趣的观点：",
+      "1、AI 正在杀死传统 SEO。搜索从\"蓝链模式\"转向\"答案引擎\"（ChatGPT、Gemini、Perplexity、Grok），消费者不再点击链接，而是直接获得 AI 生成的答案。营销人员正在被\"去中介化\"。",
+      "2、品牌可见性的新战场是\"AI 如何谈论你的品牌\"。James 说：\"地球上的每个营销人员都会关心 AI 如何谈论他们的品牌。我相信这一点，10年后这只会更加真实。\"这不是 SEO，而是 AEO（Answer Engine Optimization）。",
+      "3、\"人类不会为机器创造内容，机器会为机器创造内容\"。当人类需要编排这个过程时，他们会在 Profound 中完成。这是 James 在 2024 年初做出的疯狂预测，现在开始被 10% 的财富 500 强验证。",
+      "4、在内容廉价的时代，高质量内容成为新的门槛（table stakes）。James 说：\"如果我现在想为 Lightspeed 网站创建1000篇博客文章，我可以做到，这不难。但在这个内容廉价且容易的新世界，新的门槛变成了高质量内容。\"",
+      "5、\"质量是上下文的函数\"。James 认为：\"你给模型的上下文越多，输出高质量内容的可能性就越高。质量是上下文的函数。\"Profound 通过 CDN 集成、15亿用户提示数据面板，为模型提供海量上下文。",
+      "6、18岁上门收黄金的经历塑造了他的销售哲学。2009年金融危机后，James 和朋友上门收购人们的旧金饰。他说：\"没有什么比敲陌生人的门更难的了。发送邮件有点难，打冷电话很难，但敲陌生人的门——尤其是下班后，人们天生讨厌有人敲门——你会被狠狠拒绝，这让你脸皮变厚。\"",
+      "7、\"大多数成功创业者本质上是不安全且焦虑的\"。James 坦言：\"我们大多数人本质上是不安全且相当焦虑的存在，倾向于肩上有芯片、有东西要证明。这是一种持续的感觉——我工作得不够努力，还能再努力吗？几乎不可能摆脱。\"",
+      "8、像 2015 年的创业公司文化。Profound \"像 2015 年的创业公司\"——强调线下办公、高自主性。不强制 996，但很多人周六自愿来。James 说：\"我们在光谱上找到了一个甜蜜点——你会来这里做最好的工作，会有深夜，很多人周六来，不是强制的，但你会因为想做而做。\"",
+      "9、大胆启用年轻人，工程负责人只有 24 岁。James 不迷信经验：\"我们的工程负责人 24 岁，非常不正统，但他极其聪明，之前在 AMD，他赢得了工程组织的尊重。\"但也不排斥经验——销售 SVP Mark Ebert 是经验丰富的\"怪物\"。",
+      "10、15亿真实用户提示的数据面板。Profound 构建了最大的消费者提示面板——15亿真实用户提示，每月增长 1-1.5 亿。这是 102 年前 Nielsen 创建电视消费者面板后的新一代数据基础设施。",
+      "11、从分析到 Agentic 工作流的全链路。Profound 不只是分析平台，还构建了 Agentic 工作流：从品牌可见性分析，到自动生成竞品报告，到将 YouTube 视频转为博客内容，全流程自动化。",
+      "12、Jensen Huang 的\"苹果树\"理论。James 引用 Jensen 的话：\"你选一棵苹果树，在周围盘旋，因为你知道未来会在那里。即使你不是第一个发现的，只要你是第一个摘到的，这就够了。\"Profound 正在广告和商务这两棵\"苹果树\"周围盘旋。"
+    ],
+    "highlights": [
+      "断断续续，终于看完了 Latent Space 这期对 Profound CEO James Cadwallader 的采访。",
+      "干货很多。James 可能是 AI 营销领域最有前瞻性的创始人——他在 2024 年初就预测了\"答案引擎\"的崛起，而大多数人当时还在讨论 ChatGPT 会不会取代 Google。Profound 现在被 10% 的财富 500 强使用，证明了他的判断。",
+      "我今天不忙，把这次访谈全文精编出来，供大家学习。赠人玫瑰，手有余香。",
+      "下面是 YouTube 链接：https://www.youtube.com/watch?v=WhF_CIGHtk4"
+    ],
+    "fullText": "今天看到 James Cadwallader 去了 Latent Space 的 \"The Investment Memo\" 播客。\nJames 是 Profound 的联合创始人兼 CEO，这家公司成立不到2年，团队已超过100人，被10%的财富500强公司使用（包括 MongoDB、Ramp、Chime）。Profound 是首个专门为追踪 AI 时代品牌可见性而构建的平台。\n这期播客谈到了 13 个有趣的观点：\n1、AI 正在杀死传统 SEO。搜索从\"蓝链模式\"转向\"答案引擎\"（ChatGPT、Gemini、Perplexity、Grok），消费者不再点击链接，而是直接获得 AI 生成的答案。营销人员正在被\"去中介化\"。\n2、品牌可见性的新战场是\"AI 如何谈论你的品牌\"。James 说：\"地球上的每个营销人员都会关心 AI 如何谈论他们的品牌。我相信这一点，10年后这只会更加真实。\"这不是 SEO，而是 AEO（Answer Engine Optimization）。\n3、\"人类不会为机器创造内容，机器会为机器创造内容\"。当人类需要编排这个过程时，他们会在 Profound 中完成。这是 James 在 2024 年初做出的疯狂预测，现在开始被 10% 的财富 500 强验证。\n4、在内容廉价的时代，高质量内容成为新的门槛（table stakes）。James 说：\"如果我现在想为 Lightspeed 网站创建1000篇博客文章，我可以做到，这不难。但在这个内容廉价且容易的新世界，新的门槛变成了高质量内容。\"\n5、\"质量是上下文的函数\"。James 认为：\"你给模型的上下文越多，输出高质量内容的可能性就越高。质量是上下文的函数。\"Profound 通过 CDN 集成、15亿用户提示数据面板，为模型提供海量上下文。\n6、18岁上门收黄金的经历塑造了他的销售哲学。2009年金融危机后，James 和朋友上门收购人们的旧金饰。他说：\"没有什么比敲陌生人的门更难的了。发送邮件有点难，打冷电话很难，但敲陌生人的门——尤其是下班后，人们天生讨厌有人敲门——你会被狠狠拒绝，这让你脸皮变厚。\"\n7、\"大多数成功创业者本质上是不安全且焦虑的\"。James 坦言：\"我们大多数人本质上是不安全且相当焦虑的存在，倾向于肩上有芯片、有东西要证明。这是一种持续的感觉——我工作得不够努力，还能再努力吗？几乎不可能摆脱。\"\n8、像 2015 年的创业公司文化。Profound \"像 2015 年的创业公司\"——强调线下办公、高自主性。不强制 996，但很多人周六自愿来。James 说：\"我们在光谱上找到了一个甜蜜点——你会来这里做最好的工作，会有深夜，很多人周六来，不是强制的，但你会因为想做而做。\"\n9、大胆启用年轻人，工程负责人只有 24 岁。James 不迷信经验：\"我们的工程负责人 24 岁，非常不正统，但他极其聪明，之前在 AMD，他赢得了工程组织的尊重。\"但也不排斥经验——销售 SVP Mark Ebert 是经验丰富的\"怪物\"。\n10、15亿真实用户提示的数据面板。Profound 构建了最大的消费者提示面板——15亿真实用户提示，每月增长 1-1.5 亿。这是 102 年前 Nielsen 创建电视消费者面板后的新一代数据基础设施。\n11、从分析到 Agentic 工作流的全链路。Profound 不只是分析平台，还构建了 Agentic 工作流：从品牌可见性分析，到自动生成竞品报告，到将 YouTube 视频转为博客内容，全流程自动化。\n12、Jensen Huang 的\"苹果树\"理论。James 引用 Jensen 的话：\"你选一棵苹果树，在周围盘旋，因为你知道未来会在那里。即使你不是第一个发现的，只要你是第一个摘到的，这就够了。\"Profound 正在广告和商务这两棵\"苹果树\"周围盘旋。\n13、市场、产品、团队的比喻。James 给年轻创业者的建议：\"市场是河流，产品是船，团队是划船者。你可以有奥运选手在一个漂亮的船上，但如果你在急流中向上游划，你不会走得很远或很快。相反，你可以有一个经验不足的团队和一个 crappy 的产品，但如果你在顺流而下，有一个很好的市场，生活会变得容易得多。\"\n断断续续，终于看完了 Latent Space 这期对 Profound CEO James Cadwallader 的采访。\n干货很多。James 可能是 AI 营销领域最有前瞻性的创始人——他在 2024 年初就预测了\"答案引擎\"的崛起，而大多数人当时还在讨论 ChatGPT 会不会取代 Google。Profound 现在被 10% 的财富 500 强使用，证明了他的判断。\n我今天不忙，把这次访谈全文精编出来，供大家学习。赠人玫瑰，手有余香。\n下面是 YouTube 链接：https://www.youtube.com/watch?v=WhF_CIGHtk4\n## #01 AI 正在杀死 SEO\nSachin：We are in the midst of this mega trend and how we as consumers, as businesses, search, discover, and interact with information online... It's not just ChatGPT, it's ChatGPT, it's Gemini, it's Grok and a whole long list of others.\nJames：Going chronologically... this is early 2024... this is when ChatGPT wasn't web connected... Perplexity were the ones who had the idea of okay we won't use the LLM to answer the user's query directly. We will use the LLM to synthesize from the web and create an answer.\nIt felt like a streaming to CDs type moment... two things became clear: the first was this is going to happen. This is inevitable because it's better. You don't have to click. You don't have to browse a list of blue links. You can just ask AI a question and get the answer.\nAnd then the second is that you would need to understand that the economics of search or information retrieval as a whole would change with this new paradigm because people don't need to click the links... you see this disintermediation between websites and the consumer.\n我觉得这个点真的太重要了。 2024年初，当大多数人还在把 ChatGPT 当作\"更好的搜索引擎\"时，James 和联合创始人 Dylan 已经看到了本质变化——这不是搜索的改进，而是搜索的替代。消费者不再点击蓝链，品牌不再能控制用户看到什么。这种\"去中介化\"是营销的根本性变革。\n## #02 \"人类不会为机器创造内容，机器会为机器创造内容\"\nSachin：One thing you said to me when we met back in November... Humans won't create content for machines. Machines will create content for machines. And when humans need to orchestrate that, they're going to do it in Profound.\nJames：There's like two core beliefs that we need to be true. The first is that we have to be correct that every marketer on the planet is going to care about how AI talks about their brand, products, services, categories, competitors. I believe that. I think in 10 years that will only be more true.\nThat will be one of, if not the most important priorities for every marketer on the planet... And then the second is that you have to believe every company on the planet is going to use AI to create marketing.\n这太有意思了。 这句话可能是对 AI 营销最精辟的概括。当内容创作成本趋近于零时，人类的工作从\"创作内容\"变成\"编排机器创作内容\"。Profound 想成为这个编排层——就像 Salesforce 成为销售的编排层一样。\n## #03 质量是上下文的函数\nSachin：We're only a month into 2026 and I feel like the VC buzzword of the year is context. And I think you were actually probably the first person to say it to me which is content cannot exist without context and all that context already exists within Profound.\nJames：I think quality is a function of context. So I think the more context that you give the models the higher likelihood there is that it's going to create something good. If you don't tell the models what you want... you need to hook up lots of internal data sources, external data sources like very complex orchestrations of data input allow the model to do a good job.\n天哪，这个框架太重要了。 \"Quality is a function of context\"——质量是上下文的函数。这不是简单的\"提示工程\"，而是构建一个完整的数据基础设施：15亿用户提示、CDN 集成的网站数据、竞品数据，所有这些上下文输入模型，才能产生真正高质量的营销内容。\n## #04 18岁上门收黄金的经历\nSachin：I'm going to ask y",
+    "ytTitle": "Building Marketing for the AI Era | Profound, James Cadwallader",
+    "ytChannel": "Lightspeed Venture Partners",
+    "ytChannelUrl": "https://www.youtube.com/@lightspeedvp",
+    "ytViews": null,
+    "ytPublished": null
+  },
+  {
     "id": "QKVGwhSFti3kWSkZOpkc5TPWnhg",
     "title": "Olivia Watkins & Mia Glaese X Tiago Forte：SWE-Bench Verified 退役与评测新范式",
     "rawTitle": "0225：Olivia Watkins & Mia Glaese X Tiago Forte：SWE-Bench Verified 退役与评测新范式",
@@ -36,11 +169,11 @@
       "下面是 YouTube 链接：https://www.youtube.com/watch?v=0HaUD_olwQU"
     ],
     "fullText": "今天看到 Olivia Watkins 和 Mia Glaese 去了 Tiago Forte 的播客。\nOlivia Watkins 是 OpenAI Frontier Evals 团队成员，负责前沿能力评测；Mia Glaese 是 OpenAI 研究副总裁，领导 Codex、人类数据与对齐团队。她们同时参与 SWE-Bench Verified 的构建与审计，处在评测体系的第一线。\n这期播客总共录了 27 分钟，Olivia Watkins 和 Mia Glaese 谈到了 12 个有趣的观点：\n1、SWE-Bench Verified 曾是“北极星”编码基准，但现在进展停滞，基准已被“饱和+污染”，继续刷分已经不再代表真实能力提升。\n2、原版 SWE-Bench 的问题不在于任务“太难”，而在于问题设置不稳定：很多失败案例来自测试或题目本身有缺陷，而非模型能力不足。\n3、OpenAI 为 Verified 版本投入了接近百名工程师、多轮复核，才筛出 500 个更可用的任务，说明“真实世界编码评测”成本极高。\n4、开源仓库天然难以防污染，很多任务来自热门仓库，训练数据中不可避免地出现相似代码与历史版本，导致模型“凭记忆猜对”。\n5、污染不仅是“看过答案”，还包括模型推理中暴露的“未来版本细节”，比如模型能想到题目未给出的参数名，说明训练语料中出现过后续实现。\n6、深入复核发现，超过一半失败案例存在问题，多为“测试过窄”：测试只接受一种命名或实现细节，但题目并未要求该细节。\n7、因此“没过测试≠实现不合理”，SWE-Bench 在高分段开始测量“猜测试细节”的能力，而非编码能力本身。\n8、即使是领先模型，SWE-Bench Verified 的“真实上限”也难评估，OpenAI 在极难任务上观察到约 31 题已可通过，污染可能已让天花板提前到来。\n9、SWE-Bench Pro 的吸引力在于难度更高、任务更大、语言与仓库更多样，且在污染审计上显示更干净、更有“头部空间”。\n10、他们使用“污染审计代理”检测模型泄露：给出任务与补丁，引导模型暴露是否熟悉任务编号、答案或仓库细节，Verified 上出现多模型“复述答案”的迹象。\n11、未来理想的编码评测不仅要衡量“能否修 GitHub issue”，还要衡量设计品味、长期任务、可维护性等更贴近工程真实工作的维度。\n12、评测有两条路：人类专家高成本评判（如 GDP-Bench），或自动化测试低成本评判；前者更真实、后者更可比，但后者容易遗漏“是否值得合并”的关键标准。\n#01 SWE-Bench Verified 为什么退役\n主持人：你们发布的新文章里，核心观点是什么？\n嘉宾（Olivia）：SWE-Bench Verified 过去是衡量编码进步的北极星，但现在已被饱和和污染削弱，继续用它衡量进步已经不可靠。\n编辑补充：这里“饱和”指的是模型分数进入高位后，增量不再代表能力提升；“污染”则来自开源仓库与训练数据的重叠，模型可能不是“会写”，而是“记得”。\n主持人：你们怎么确认污染是真实存在的？\n嘉宾（Olivia）：我们看到模型能推断出题目没提到的参数或实现细节，像是记住了仓库更晚版本的实现，这种情况几乎不可能靠题目推理出来。\n#02 评测不是“错”，而是“太窄”\n主持人：是不是基准本身有问题？\n嘉宾（Olivia）：我们复核了模型难解的题目，超过一半存在测试过窄、描述不清或题目遗漏的问题，比如测试要求某个函数名，但题目没说必须这样命名。\n编辑补充：这意味着“没过测试”不等于“实现不好”，而是评测缺乏对多种合理解的包容度。高分段开始考“猜测试”，而不是考“能力”。\n#03 为什么转向 SWE-Bench Pro\n主持人：那替代方案是什么？为什么是 SWE-Bench Pro？\n嘉宾（Mia）：它更难、更大、更多样，任务时长有 1-4 小时甚至更长，语言与仓库覆盖更广，头部空间更大。\n主持人：污染问题会缓解吗？\n嘉宾（Mia）：我们用“污染审计代理”做过检验，在 Verified 上看到模型会复述答案或任务编号，但在 Pro 上只看到很轻微的熟悉迹象。\n#04 未来评测要测什么\n主持人：理想的编码评测应该怎么做？\n嘉宾（Mia）：不仅要测能不能修 issue，还要看设计品味、代码质量、可维护性，以及更长任务的完成能力。\n编辑补充：这会迫使评测走向两难：是走高成本的人类专家评审（像 GDP-Bench），还是坚持自动化测试的可比性。两条路线都要走，但需要更清晰的权衡标准。\n下面是 YouTube 链接：https://www.youtube.com/watch?v=0HaUD_olwQU\n",
-    "ytTitle": "SWE-Bench Verified is Contaminated: What Comes Next — with OpenAI Frontier Evals team",
+    "ytTitle": "The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals",
     "ytChannel": "Latent Space",
     "ytChannelUrl": "https://www.youtube.com/@LatentSpacePod",
-    "ytViews": 2422,
-    "ytPublished": "2026-02-23"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "X8VxweK68iPPotk4gnucWEEPn2c",
@@ -83,8 +216,8 @@
     "ytTitle": "Inside Claude Code With Its Creator Boris Cherny",
     "ytChannel": "Y Combinator",
     "ytChannelUrl": "https://www.youtube.com/@ycombinator",
-    "ytViews": 129556,
-    "ytPublished": "2026-02-17"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "CanbwqrdAiO6Vrkgls5cWcs5n5f",
@@ -123,8 +256,8 @@
     "ytTitle": "The AI Agent Economy Is Here",
     "ytChannel": "Y Combinator",
     "ytChannelUrl": "https://www.youtube.com/@ycombinator",
-    "ytViews": 98424,
-    "ytPublished": "2026-02-21"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "SOWEwfQ0ki05Bzk1k2xcVhWBnjc",
@@ -164,8 +297,8 @@
     "ytTitle": "Voice AI’s Big Moment: Top Researcher on Why Everything Is Changing (Neil Zeghidour, Gradium AI)",
     "ytChannel": "The MAD Podcast with Matt Turck",
     "ytChannelUrl": "https://www.youtube.com/@DataDrivenNYC",
-    "ytViews": 2229,
-    "ytPublished": "2026-02-19"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "ZHtqwCawyiPk6GkEi7RcgCbunrh",
@@ -217,8 +350,8 @@
     "ytTitle": "OpenClaw Creator: Why 80% Of Apps Will Disappear",
     "ytChannel": "Y Combinator",
     "ytChannelUrl": "https://www.youtube.com/@ycombinator",
-    "ytViews": 707044,
-    "ytPublished": "2026-02-07"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "XppawPL7Situ8tkdBlYcOiQOntd",
@@ -284,8 +417,8 @@
     "ytTitle": "Marc Andreessen: The real AI boom hasn’t even started yet",
     "ytChannel": "Lenny's Podcast",
     "ytChannelUrl": "https://www.youtube.com/@LennysPodcast",
-    "ytViews": 268244,
-    "ytPublished": "2026-01-29"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "QE2HwllwKiC1t4kqJPbcdc8nnwL",
@@ -320,8 +453,8 @@
     "ytTitle": "Can Al Learn our Designer's Eye?",
     "ytChannel": "Every",
     "ytChannelUrl": "https://www.youtube.com/@EveryInc",
-    "ytViews": 1114,
-    "ytPublished": "2026-01-28"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "JDLtwhz3dis864k6aXqc59Oqnqb",
@@ -373,8 +506,8 @@
     "ytTitle": "How OpenClaw's Creator Uses AI to Run His Life in 40 Minutes | Peter Steinberger",
     "ytChannel": "Peter Yang",
     "ytChannelUrl": "https://www.youtube.com/@PeterYangYT",
-    "ytViews": 269674,
-    "ytPublished": "2026-02-01"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "HnZxwYXOqitAVZkykuxcd49hnLg",
@@ -437,8 +570,8 @@
     "ytTitle": "The \"DeepSeek\" Moment- RLVR & GRPO #ai #podcast",
     "ytChannel": "The MAD Podcast with Matt Turck",
     "ytChannelUrl": "https://www.youtube.com/@DataDrivenNYC",
-    "ytViews": 842,
-    "ytPublished": "2026-01-31"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "APYXwaiXXi6ClikfX2dcn9Jznrb",
@@ -461,8 +594,8 @@
     "ytTitle": "The creator of Clawd: \"I ship code I don't read\"",
     "ytChannel": "The Pragmatic Engineer",
     "ytChannelUrl": "https://www.youtube.com/@pragmaticengineer",
-    "ytViews": 473235,
-    "ytPublished": "2026-01-28"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "UTzxw726Tim6qXk16V0cbqSHnyc",
@@ -514,8 +647,8 @@
     "ytTitle": "The creator of Clawd: \"I ship code I don't read\"",
     "ytChannel": "The Pragmatic Engineer",
     "ytChannelUrl": "https://www.youtube.com/@pragmaticengineer",
-    "ytViews": 473224,
-    "ytPublished": "2026-01-28"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "E9r9w3tPHic6Ijkn6pNceEM2nvh",
@@ -554,8 +687,8 @@
     "ytTitle": "Marc Andreessen: The real AI boom hasn’t even started yet",
     "ytChannel": "Lenny's Podcast",
     "ytChannelUrl": "https://www.youtube.com/@LennysPodcast",
-    "ytViews": 268244,
-    "ytPublished": "2026-01-29"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "DJQswBmV1iVzmokSQjGcV1l4n3b",
@@ -591,8 +724,8 @@
     "ytTitle": "Why Factories are Adopting Robots-as-a-Service | Roman Hölzl, RobCo",
     "ytChannel": "Lightspeed Venture Partners",
     "ytChannelUrl": "https://www.youtube.com/@lightspeedvp",
-    "ytViews": 1194922,
-    "ytPublished": "2026-01-29"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "DBJqwzyRai3st8kf4zHcihwtn9e",
@@ -628,8 +761,8 @@
     "ytTitle": "State of LLMs 2026: RLVR, GRPO, Inference Scaling — Sebastian Raschka",
     "ytChannel": "The MAD Podcast with Matt Turck",
     "ytChannelUrl": "https://www.youtube.com/@DataDrivenNYC",
-    "ytViews": 11298,
-    "ytPublished": "2026-01-29"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "TwTOwJ29qimSUVkW8uiczQQjncb",
@@ -723,8 +856,8 @@
     "ytTitle": "Can Al Learn our Designer's Eye?",
     "ytChannel": "Every",
     "ytChannelUrl": "https://www.youtube.com/@EveryInc",
-    "ytViews": 1114,
-    "ytPublished": "2026-01-28"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "WnTmw6ADNi1DfKkJyGacH3vrngc",
@@ -949,8 +1082,8 @@
     "ytTitle": "The new AI growth playbook for 2026 | How Lovable hit $200M ARR in one year",
     "ytChannel": "Lenny's Podcast",
     "ytChannelUrl": "https://www.youtube.com/@LennysPodcast",
-    "ytViews": 53997,
-    "ytPublished": "2025-12-18"
+    "ytViews": null,
+    "ytPublished": null
   },
   {
     "id": "ZqNHwfGJMi4NLUkruURcOl1KnFf",
@@ -1185,7 +1318,7 @@
     "ytTitle": "Sam Altman: AI Will Replace All Knowledge Work Through One Universal Assistant",
     "ytChannel": "Every",
     "ytChannelUrl": "https://www.youtube.com/@EveryInc",
-    "ytViews": 1771,
-    "ytPublished": "2026-02-05"
+    "ytViews": null,
+    "ytPublished": null
   }
 ]
