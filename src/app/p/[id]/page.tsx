@@ -10,8 +10,13 @@ import Panel from "@/components/Panel";
 import ArticleCard from "@/components/ArticleCard";
 import MobileHeader from "@/components/MobileHeader";
 
+export const revalidate = 300; // 5 minutes
+
+export const dynamicParams = true; // Allow new podcasts not in generateStaticParams
+
 export async function generateStaticParams() {
-  return getAllPodcasts().map((p) => ({ id: p.id }));
+  const podcasts = await getAllPodcasts();
+  return podcasts.map((p) => ({ id: p.id }));
 }
 
 export async function generateMetadata({
@@ -20,7 +25,7 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const podcast = getPodcastById(id);
+  const podcast = await getPodcastById(id);
   if (!podcast) return { title: "Not Found" };
 
   return {
@@ -44,12 +49,12 @@ export default async function PodcastPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const podcast = getPodcastById(id);
+  const podcast = await getPodcastById(id);
   if (!podcast) notFound();
 
-  const podcasts = getAllPodcasts();
+  const podcasts = await getAllPodcasts();
   const podcastIndex = podcasts.findIndex((p) => p.id === id);
-  const { next } = getAdjacentPodcasts(id);
+  const { next } = await getAdjacentPodcasts(id);
   const color = getColorForPodcast(id, podcastIndex);
 
   return (
@@ -61,7 +66,7 @@ export default async function PodcastPage({
       <Sidebar podcasts={podcasts} sidebarBg={color.sidebar} />
 
       <main className="flex-1 h-screen overflow-y-auto flex justify-center px-6 py-12 md:px-12 md:py-12 main-scroll pt-[76px] md:pt-12">
-        <ArticleCard podcast={podcast} nextPodcast={next} />
+        <ArticleCard podcast={podcast} nextPodcast={next} bgColor={color.bg} />
       </main>
 
       <Panel podcast={podcast} />

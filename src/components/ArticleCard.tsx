@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { Podcast } from "@/lib/types";
+import ShareButton from "./ShareButton";
 
 function formatParagraph(text: string): string {
   let s = text;
@@ -93,9 +94,11 @@ function HighlightsSection({ paragraphs }: { paragraphs: string[] }) {
 export default function ArticleCard({
   podcast,
   nextPodcast,
+  bgColor,
 }: {
   podcast: Podcast;
   nextPodcast: Podcast | null;
+  bgColor: string;
 }) {
   return (
     <article className="w-full max-w-[680px] bg-white rounded-2xl shadow-[0_8px_60px_rgba(0,0,0,0.15)] overflow-hidden animate-fade-up h-fit">
@@ -205,6 +208,7 @@ export default function ArticleCard({
                 <line x1="10" y1="14" x2="21" y2="3" />
               </svg>
             </a>
+            <ShareButton podcast={podcast} bgColor={bgColor} />
           </div>
         </div>
 
