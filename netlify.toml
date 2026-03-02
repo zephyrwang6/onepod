@@ -3,8 +3,7 @@
   publish = ".next"
 
 [build.environment]
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  NODE_VERSION = "20"
 
-[[edge_functions]]
-  function = "next-dev"
-  path = "/*"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
