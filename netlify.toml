@@ -1,6 +1,10 @@
 [build]
-  command = "pip install -r requirements.txt && python3 build.py && npm run build"
-  publish = "out"
+  command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[[edge_functions]]
+  function = "next-dev"
+  path = "/*"

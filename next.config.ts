@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // Remove output: "export" to enable SSR for real-time data fetching
   trailingSlash: true,
   images: {
     unoptimized: true,

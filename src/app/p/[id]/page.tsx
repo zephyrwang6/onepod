@@ -10,12 +10,9 @@ import Panel from "@/components/Panel";
 import ArticleCard from "@/components/ArticleCard";
 import MobileHeader from "@/components/MobileHeader";
 
-export const dynamicParams = false;
-
-export async function generateStaticParams() {
-  const podcasts = await getAllPodcasts();
-  return podcasts.map((p) => ({ id: p.id }));
-}
+// Force dynamic rendering to fetch real-time data from Feishu
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata({
   params,
