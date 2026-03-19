@@ -7,7 +7,6 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/prebuild.mjs",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"

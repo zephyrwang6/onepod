@@ -10,10 +10,8 @@ import Panel from "@/components/Panel";
 import ArticleCard from "@/components/ArticleCard";
 import MobileHeader from "@/components/MobileHeader";
 
-export async function generateStaticParams() {
-  const podcasts = await getAllPodcasts();
-  return podcasts.map((p) => ({ id: p.id }));
-}
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata({
   params,
