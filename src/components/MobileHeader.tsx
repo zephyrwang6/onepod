@@ -58,7 +58,7 @@ export default function MobileHeader({
             Onepod
           </h1>
           <span className="block text-[12px] text-white/35 mt-1.5">
-            每日一期，看比听快
+            每日精选海外科技播客
           </span>
         </div>
         <nav className="flex-1 overflow-y-auto py-3 sidebar-scroll">

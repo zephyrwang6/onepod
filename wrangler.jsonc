@@ -1,0 +1,38 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "onepod",
+  "account_id": "ef1f5ee08df7dff80cb8e19535678468",
+  "compatibility_date": "2026-05-08",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "FEISHU_RUNTIME_FETCH": "0",
+    "ONEPOD_CACHE_KEY": "podcasts"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ONEPOD_CACHE",
+      "id": "84d429c9f80d435eaa804cf91acbdb34"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "onepod.site",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.onepod.site",
+      "custom_domain": true
+    }
+  ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "onepod"
+    }
+  ]
+}

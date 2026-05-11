@@ -3,6 +3,7 @@ export interface Podcast {
   title: string;
   rawTitle: string;
   dateCode: string;
+  createdAt?: number;
   youtubeId: string | null;
   feishuUrl: string;
   intro: string[];

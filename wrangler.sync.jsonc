@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": "workers/feishu-sync.js",
+  "name": "onepod-feishu-sync",
+  "account_id": "ef1f5ee08df7dff80cb8e19535678468",
+  "compatibility_date": "2026-05-08",
+  "vars": {
+    "ONEPOD_CACHE_KEY": "podcasts",
+    "SYNC_BATCH_SIZE": "18"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ONEPOD_CACHE",
+      "id": "84d429c9f80d435eaa804cf91acbdb34"
+    }
+  ],
+  "triggers": {
+    "crons": ["*/5 * * * *"]
+  }
+}

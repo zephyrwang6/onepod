@@ -1,29 +1,9 @@
 import type { Metadata } from "next";
-import { Crimson_Pro, Noto_Serif_SC, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const crimsonPro = Crimson_Pro({
-  variable: "--font-crimson",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const notoSerifSC = Noto_Serif_SC({
-  variable: "--font-noto-serif",
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Onepod — 每日一期，看比听快",
-  description: "每日精选一期播客，用阅读的速度获取播客精华",
+  title: "Onepod — 每日精选海外科技播客",
+  description: "每日精选海外科技播客",
 };
 
 export default function RootLayout({
@@ -33,11 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body
-        className={`${crimsonPro.variable} ${notoSerifSC.variable} ${dmSans.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

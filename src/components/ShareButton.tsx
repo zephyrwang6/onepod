@@ -6,6 +6,11 @@ import type { Podcast } from "@/lib/types";
 import QRCode from "qrcode";
 import html2canvas from "html2canvas-pro";
 
+const SHARE_SERIF_FONT =
+  '"Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "Times New Roman", serif';
+const SHARE_UI_FONT =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif';
+
 function formatParagraph(text: string): string {
   return text
     .replace(/https?:\/\/[^\s]+/g, "")
@@ -47,8 +52,9 @@ function ShareCard({
         width: 375,
         backgroundColor: bgColor,
         padding: 28,
-        fontFamily:
-          '"Noto Serif SC", "Crimson Pro", Georgia, serif',
+        fontFamily: SHARE_SERIF_FONT,
+        fontKerning: "normal",
+        textRendering: "geometricPrecision",
       }}
     >
       {/* Main card */}
@@ -83,8 +89,7 @@ function ShareCard({
                 color: "#fff",
                 fontSize: 10,
                 fontWeight: 500,
-                fontFamily:
-                  '"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif',
+                fontFamily: SHARE_UI_FONT,
                 padding: "4px 10px",
                 borderRadius: 999,
                 letterSpacing: "0.04em",
@@ -125,14 +130,16 @@ function ShareCard({
           {/* Title */}
           <h2
             style={{
-              fontFamily:
-                '"Crimson Pro", "Noto Serif SC", serif',
+              fontFamily: SHARE_SERIF_FONT,
               fontSize: 24,
               fontWeight: 600,
-              lineHeight: 1.35,
+              lineHeight: "34px",
               color: "#1a1a1a",
               margin: "0 0 16px 0",
-              letterSpacing: "-0.01em",
+              letterSpacing: 0,
+              wordBreak: "normal",
+              overflowWrap: "break-word",
+              lineBreak: "strict",
             }}
           >
             {podcast.title}
@@ -152,12 +159,23 @@ function ShareCard({
           <div
             style={{
               fontSize: 14,
-              lineHeight: 1.85,
+              lineHeight: "27px",
               color: "#4a4a4a",
+              wordBreak: "normal",
+              overflowWrap: "break-word",
+              lineBreak: "strict",
             }}
           >
             {introLines.map((text, i) => (
-              <p key={i} style={{ margin: "0 0 10px 0" }}>
+              <p
+                key={i}
+                style={{
+                  margin: "0 0 10px 0",
+                  wordBreak: "normal",
+                  overflowWrap: "break-word",
+                  lineBreak: "strict",
+                }}
+              >
                 {text}
               </p>
             ))}
@@ -171,8 +189,7 @@ function ShareCard({
                 marginTop: 8,
                 fontSize: 12,
                 color: "#aaa",
-                fontFamily:
-                  '"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif',
+                fontFamily: SHARE_UI_FONT,
               }}
             >
               ···
@@ -197,8 +214,7 @@ function ShareCard({
         <div>
           <div
             style={{
-              fontFamily:
-                '"Crimson Pro", "Noto Serif SC", serif',
+              fontFamily: SHARE_SERIF_FONT,
               fontSize: 22,
               fontWeight: 600,
               color: "#fff",
@@ -210,8 +226,7 @@ function ShareCard({
           </div>
           <div
             style={{
-              fontFamily:
-                '"DM Sans", -apple-system, BlinkMacSystemFont, sans-serif',
+              fontFamily: SHARE_UI_FONT,
               fontSize: 11,
               color: "rgba(255,255,255,0.5)",
               letterSpacing: "0.02em",
@@ -389,6 +404,7 @@ export default function ShareButton({
 
       // Wait for render + image loading
       await new Promise((r) => setTimeout(r, 500));
+      await document.fonts?.ready;
 
       // Wait for cover image to load
       if (cardRef.current) {

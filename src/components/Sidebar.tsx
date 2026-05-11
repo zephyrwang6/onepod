@@ -74,7 +74,7 @@ export default function Sidebar({
             Onepod
           </h1>
           <span className="block text-[12px] text-white/35 mt-2 leading-[1.5] font-[family-name:var(--font-ui)]">
-            每日一期，看比听快
+            每日精选海外科技播客
           </span>
         </Link>
       </div>

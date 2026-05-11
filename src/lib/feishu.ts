@@ -8,6 +8,7 @@ import type { Podcast } from "./types";
 const BASE_URL = "https://open.feishu.cn/open-apis";
 const PARENT_NODE = "TOSJwKzxTiFdiRk0aducHNBFntg";
 const SPACE_ID = "7591325128043121630";
+const FEISHU_MAX_RETRIES = 4;
 
 interface FeishuBlock {
   block_type: number;
@@ -20,13 +21,32 @@ interface FeishuBlock {
 }
 
 interface FeishuElement {
-  text_run?: { content: string };
+  text_run?: {
+    content: string;
+    text_element_style?: { link?: { url?: string } };
+  };
+  link?: { url?: string };
+  url?: string;
 }
 
 interface FeishuNode {
   title: string;
   obj_token: string;
   node_token: string;
+  node_create_time?: string;
+  obj_create_time?: string;
+}
+
+interface FeishuApiResult<T> {
+  code: number;
+  msg?: string;
+  data?: T;
+}
+
+interface FeishuPageData<T> {
+  items?: T[];
+  has_more?: boolean;
+  page_token?: string;
 }
 
 interface Section {
@@ -67,19 +87,75 @@ async function getTenantToken(): Promise<string> {
   return data.tenant_access_token;
 }
 
-async function getChildNodes(token: string): Promise<FeishuNode[]> {
-  const url = `${BASE_URL}/wiki/v2/spaces/${SPACE_ID}/nodes?parent_node_token=${PARENT_NODE}&page_size=50`;
-  const resp = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  });
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-  const result = await resp.json();
-  if (result.code === 0) {
-    return result.data.items;
+async function fetchFeishuJson<T>(
+  url: string,
+  options: RequestInit,
+  label: string
+): Promise<FeishuApiResult<T>> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= FEISHU_MAX_RETRIES; attempt++) {
+    try {
+      const resp = await fetch(url, options);
+      const result = (await resp.json()) as FeishuApiResult<T>;
+      if (resp.ok && result.code === 0) {
+        return result;
+      }
+
+      lastError = new Error(
+        `${label} failed: HTTP ${resp.status}, ${JSON.stringify(result)}`
+      );
+    } catch (error) {
+      lastError = error;
+    }
+
+    if (attempt < FEISHU_MAX_RETRIES) {
+      await sleep(400 * attempt ** 2);
+    }
   }
-  console.error("Failed to fetch child nodes:", result);
-  return [];
+
+  throw lastError;
+}
+
+async function getChildNodes(token: string): Promise<FeishuNode[]> {
+  const nodes: FeishuNode[] = [];
+  let pageToken = "";
+
+  while (true) {
+    const params = new URLSearchParams({
+      parent_node_token: PARENT_NODE,
+      page_size: "50",
+    });
+    if (pageToken) {
+      params.set("page_token", pageToken);
+    }
+
+    const url = `${BASE_URL}/wiki/v2/spaces/${SPACE_ID}/nodes?${params}`;
+    const result = await fetchFeishuJson<FeishuPageData<FeishuNode>>(
+      url,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        cache: "no-store",
+      },
+      "Fetch child nodes"
+    );
+
+    nodes.push(...(result.data?.items || []));
+
+    if (!result.data?.has_more) {
+      break;
+    }
+    pageToken = result.data?.page_token || "";
+    if (!pageToken) {
+      break;
+    }
+  }
+
+  return nodes;
 }
 
 async function getDocBlocks(
@@ -96,10 +172,11 @@ async function getDocBlocks(
       url += `&page_token=${pageToken}`;
     }
 
-    const resp = await fetch(url, { headers, cache: "no-store" });
-    const result = await resp.json();
-
-    if (result.code !== 0) break;
+    const result = await fetchFeishuJson<FeishuPageData<FeishuBlock>>(
+      url,
+      { headers, cache: "no-store" },
+      `Fetch blocks for ${objToken}`
+    );
 
     const items = result.data?.items || [];
     allBlocks.push(...items);
@@ -113,19 +190,32 @@ async function getDocBlocks(
 
 function extractTextFromElements(elements: FeishuElement[]): string {
   return elements
-    .map((el) => el.text_run?.content || "")
+    .map((el) => {
+      const content = el.text_run?.content || "";
+      const link =
+        el.text_run?.text_element_style?.link?.url ||
+        el.link?.url ||
+        el.url ||
+        "";
+      if (link && !content.includes(link)) {
+        return `${content}${content ? "\n" : ""}${link}`;
+      }
+      return content;
+    })
     .filter(Boolean)
     .join("");
 }
 
 function extractYoutubeId(text: string): string | null {
+  const compactText = text.replace(/\s+/g, "");
   const patterns = [
-    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
-    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /(?:youtube\.com\/watch\?[^#\n\r]*?v=|youtube\.com\/embed\/|youtube\.com\/shorts\/|youtube\.com\/live\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
   ];
-  for (const pat of patterns) {
-    const m = text.match(pat);
-    if (m) return m[1];
+  for (const candidate of [text, compactText]) {
+    for (const pat of patterns) {
+      const m = candidate.match(pat);
+      if (m) return m[1];
+    }
   }
   return null;
 }
@@ -217,15 +307,23 @@ async function fetchYoutubeMeta(videoId: string | null): Promise<YoutubeMeta> {
 
   try {
     const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
-    const resp = await fetch(oembedUrl, { cache: "no-store" });
+    const resp = await fetch(oembedUrl, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(1500),
+    });
     if (resp.ok) {
       const data = await resp.json();
       meta.ytTitle = data.title || null;
       meta.ytChannel = data.author_name || null;
       meta.ytChannelUrl = data.author_url || null;
     }
-  } catch (e) {
-    console.error(`oEmbed failed for ${videoId}:`, e);
+  } catch {
+    // YouTube can be slow or unavailable locally; cards fall back to the source
+    // text parsed from the Feishu document.
+  }
+
+  if (process.env.FEISHU_FETCH_YOUTUBE_META !== "1") {
+    return meta;
   }
 
   try {
@@ -266,6 +364,82 @@ function parseTitle(rawTitle: string): { dateCode: string; title: string } {
   return { dateCode: "", title: rawTitle };
 }
 
+function getNodeCreatedAt(node: FeishuNode): number {
+  return Number(node.node_create_time || node.obj_create_time || 0);
+}
+
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  limit: number,
+  mapper: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const currentIndex = nextIndex++;
+      results[currentIndex] = await mapper(items[currentIndex], currentIndex);
+    }
+  }
+
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, () => worker())
+  );
+  return results;
+}
+
+async function buildPodcastFromNode(
+  token: string,
+  child: FeishuNode,
+  index: number,
+  total: number
+): Promise<Podcast> {
+  console.log(`[feishu]   [${index + 1}/${total}] ${child.title}`);
+
+  const blocks = await getDocBlocks(token, child.obj_token);
+  const { fullText, youtubeId, sections } = blocksToContent(blocks);
+  const { dateCode, title: cleanTitle } = parseTitle(child.title);
+
+  let introParagraphs: string[] = [];
+  let highlights: string[] = [];
+
+  for (const sec of sections) {
+    if (sec.title.includes("精华") || !sec.title) {
+      if (introParagraphs.length === 0 && !sec.title) {
+        introParagraphs = sec.paragraphs;
+      } else if (sec.title.includes("精华")) {
+        highlights = sec.paragraphs;
+      }
+    } else if (introParagraphs.length === 0) {
+      introParagraphs = sec.paragraphs;
+    }
+  }
+
+  if (introParagraphs.length === 0 && sections.length > 0) {
+    introParagraphs = sections[0].paragraphs;
+  }
+  if (highlights.length === 0 && sections.length > 1) {
+    highlights = sections[sections.length - 1].paragraphs;
+  }
+
+  const ytMeta = await fetchYoutubeMeta(youtubeId);
+
+  return {
+    id: child.node_token,
+    title: cleanTitle,
+    rawTitle: child.title,
+    dateCode,
+    createdAt: getNodeCreatedAt(child),
+    youtubeId,
+    feishuUrl: `https://my.feishu.cn/wiki/${child.node_token}`,
+    intro: introParagraphs.slice(0, 15),
+    highlights: highlights.slice(0, 20),
+    fullText,
+    ...ytMeta,
+  };
+}
+
 /**
  * Fetch all podcasts from Feishu wiki API.
  * This is the main entry point - results should be cached by the caller.
@@ -275,59 +449,13 @@ export async function fetchAllPodcasts(): Promise<Podcast[]> {
 
   const token = await getTenantToken();
   const children = await getChildNodes(token);
+  children.sort((a, b) => getNodeCreatedAt(b) - getNodeCreatedAt(a));
   console.log(`[feishu] Found ${children.length} documents`);
 
-  const podcasts: Podcast[] = [];
+  const podcasts = await mapWithConcurrency(children, 3, (child, index) =>
+    buildPodcastFromNode(token, child, index, children.length)
+  );
 
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i];
-    console.log(
-      `[feishu]   [${i + 1}/${children.length}] ${child.title}`
-    );
-
-    const blocks = await getDocBlocks(token, child.obj_token);
-    const { fullText, youtubeId, sections } = blocksToContent(blocks);
-    const { dateCode, title: cleanTitle } = parseTitle(child.title);
-
-    let introParagraphs: string[] = [];
-    let highlights: string[] = [];
-
-    for (const sec of sections) {
-      if (sec.title.includes("精华") || !sec.title) {
-        if (introParagraphs.length === 0 && !sec.title) {
-          introParagraphs = sec.paragraphs;
-        } else if (sec.title.includes("精华")) {
-          highlights = sec.paragraphs;
-        }
-      } else if (introParagraphs.length === 0) {
-        introParagraphs = sec.paragraphs;
-      }
-    }
-
-    if (introParagraphs.length === 0 && sections.length > 0) {
-      introParagraphs = sections[0].paragraphs;
-    }
-    if (highlights.length === 0 && sections.length > 1) {
-      highlights = sections[sections.length - 1].paragraphs;
-    }
-
-    const ytMeta = await fetchYoutubeMeta(youtubeId);
-
-    podcasts.push({
-      id: child.node_token,
-      title: cleanTitle,
-      rawTitle: child.title,
-      dateCode,
-      youtubeId,
-      feishuUrl: `https://my.feishu.cn/wiki/${child.node_token}`,
-      intro: introParagraphs.slice(0, 15),
-      highlights: highlights.slice(0, 20),
-      fullText: fullText.slice(0, 5000),
-      ...ytMeta,
-    });
-  }
-
-  podcasts.sort((a, b) => b.dateCode.localeCompare(a.dateCode));
   console.log(`[feishu] Done! Fetched ${podcasts.length} podcasts`);
 
   return podcasts;
