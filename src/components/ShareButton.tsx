@@ -9,13 +9,56 @@ import html2canvas from "html2canvas-pro";
 const SHARE_SERIF_FONT =
   '"Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", "Times New Roman", serif';
 const SHARE_UI_FONT =
-  '-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif';
+  '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
 function formatParagraph(text: string): string {
   return text
     .replace(/https?:\/\/[^\s]+/g, "")
     .replace(/(\d+)[、．.]\s*/g, "$1. ")
     .trim();
+}
+
+function isMetadataLine(text: string): boolean {
+  return /^(嘉宾|来源|日期|标签|YouTube|YouTube 链接|下面是 YouTube 链接)[：:]/.test(
+    text
+  );
+}
+
+function isClosingLine(text: string): boolean {
+  return /^(感谢阅读|如果对你有启发|欢迎转发)/.test(text);
+}
+
+function isHighlightStart(lines: string[], index: number): boolean {
+  const text = lines[index];
+  const next = lines[index + 1] || "";
+  return /^关于.+/.test(text) && next.trim().startsWith(">");
+}
+
+function getShareLines(podcast: Podcast): string[] {
+  const source = podcast.fullText?.trim()
+    ? podcast.fullText
+    : podcast.intro.join("\n");
+  const lines = source
+    .split(/\n+/)
+    .map((text) => text.trim())
+    .filter(Boolean);
+  const core: string[] = [];
+
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index];
+    if (isMetadataLine(line)) continue;
+    if (isHighlightStart(lines, index)) break;
+    if (isClosingLine(line)) break;
+    if (line.startsWith(">")) continue;
+    core.push(line);
+  }
+
+  const fallback = podcast.intro
+    .flatMap((text) => text.split(/\n+/))
+    .map((text) => text.trim())
+    .filter((text) => text && !isMetadataLine(text));
+
+  return (core.length > 0 ? core : fallback).map(formatParagraph).filter(Boolean);
 }
 
 /** Hidden card rendered off-screen, captured by html2canvas */
@@ -30,15 +73,7 @@ function ShareCard({
   qrDataUrl: string;
   cardRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const allLines = podcast.intro
-    .filter(
-      (t) =>
-        !t.includes("YouTube 链接") &&
-        !t.includes("youtube.com") &&
-        !t.includes("youtu.be")
-    )
-    .map(formatParagraph)
-    .filter(Boolean);
+  const allLines = getShareLines(podcast);
   const introLines = allLines.slice(0, 10);
   const hasMore = allLines.length > introLines.length;
 
@@ -52,8 +87,9 @@ function ShareCard({
         width: 375,
         backgroundColor: bgColor,
         padding: 28,
-        fontFamily: SHARE_SERIF_FONT,
+        fontFamily: SHARE_UI_FONT,
         fontKerning: "normal",
+        fontVariantLigatures: "none",
         textRendering: "geometricPrecision",
       }}
     >
@@ -130,13 +166,14 @@ function ShareCard({
           {/* Title */}
           <h2
             style={{
-              fontFamily: SHARE_SERIF_FONT,
-              fontSize: 24,
-              fontWeight: 600,
-              lineHeight: "34px",
+              fontFamily: SHARE_UI_FONT,
+              fontSize: 23,
+              fontWeight: 700,
+              lineHeight: "33px",
               color: "#1a1a1a",
               margin: "0 0 16px 0",
               letterSpacing: 0,
+              fontVariantLigatures: "none",
               wordBreak: "normal",
               overflowWrap: "break-word",
               lineBreak: "strict",
@@ -161,6 +198,8 @@ function ShareCard({
               fontSize: 14,
               lineHeight: "27px",
               color: "#4a4a4a",
+              fontFamily: SHARE_UI_FONT,
+              fontVariantLigatures: "none",
               wordBreak: "normal",
               overflowWrap: "break-word",
               lineBreak: "strict",
@@ -174,6 +213,7 @@ function ShareCard({
                   wordBreak: "normal",
                   overflowWrap: "break-word",
                   lineBreak: "strict",
+                  fontVariantLigatures: "none",
                 }}
               >
                 {text}
