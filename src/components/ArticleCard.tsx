@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Podcast } from "@/lib/types";
 import ShareButton from "./ShareButton";
+import XhsShareButton from "./XhsShareButton";
 
 function escapeHtml(text: string): string {
   return text
@@ -257,6 +258,7 @@ export default function ArticleCard({
               </svg>
             </a>
             <ShareButton podcast={podcast} bgColor={bgColor} />
+            <XhsShareButton podcast={podcast} bgColor={bgColor} />
           </div>
         </div>
 
