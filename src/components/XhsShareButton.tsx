@@ -186,8 +186,8 @@ function lineWeight(line: ContentLine): number {
 
 function paginateLines(lines: ContentLine[]): ContentLine[][] {
   const totalWeight = lines.reduce((sum, line) => sum + lineWeight(line), 0);
-  const pageCount = Math.max(1, Math.ceil(totalWeight / 390));
-  const pageBudget = Math.max(310, Math.ceil(totalWeight / pageCount));
+  const pageCount = Math.max(1, Math.ceil(totalWeight / 350));
+  const pageBudget = Math.max(290, Math.ceil(totalWeight / pageCount));
   const pages: ContentLine[][] = [];
   let current: ContentLine[] = [];
   let currentWeight = 0;
@@ -268,14 +268,18 @@ function XhsCard({
         overflow: "hidden",
         position: "relative",
         fontVariantLigatures: "none",
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
       }}
     >
       <div
         style={{
-          height: "100%",
+          flex: 1,
+          minHeight: 0,
           background: "#fbfaf7",
           borderRadius: 28,
-          padding: page.type === "cover" ? 0 : "34px 36px",
+          padding: page.type === "cover" ? 0 : "34px 36px 26px",
           overflow: "hidden",
           boxSizing: "border-box",
           display: "flex",
@@ -408,18 +412,6 @@ function XhsCard({
                     </div>
                   ))}
               </div>
-              <div style={{ flex: 1 }} />
-              <div
-                style={{
-                  marginTop: 20,
-                  color: "#9a9d96",
-                  fontSize: 14,
-                  lineHeight: "22px",
-                  fontWeight: 600,
-                }}
-              >
-                OnePod · 每日精选海外播客
-              </div>
             </div>
           </>
         ) : (
@@ -482,18 +474,20 @@ function XhsCard({
                 )
               )}
             </div>
-            <div
-              style={{
-                paddingTop: 18,
-                color: "#9a9d96",
-                fontSize: 13,
-                fontWeight: 600,
-              }}
-            >
-              OnePod · 每日精选海外播客
-            </div>
           </>
         )}
+      </div>
+      <div
+        style={{
+          color: "rgba(255, 255, 255, 0.72)",
+          fontSize: 13,
+          lineHeight: "20px",
+          fontWeight: 600,
+          padding: "0 4px",
+          flex: "0 0 auto",
+        }}
+      >
+        OnePod · 每日精选海外播客
       </div>
     </div>
   );
