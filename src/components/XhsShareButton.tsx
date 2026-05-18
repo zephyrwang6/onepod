@@ -72,7 +72,7 @@ function getCoverMeta(podcast: Podcast): CoverMeta {
 }
 
 function isMetadataLine(text: string): boolean {
-  return /^\s*[•\-]?\s*(嘉宾|演讲者|主持人|频道|来源|日期|更新时间|标签|链接|播客地址|观看量|YouTube|YouTube 链接|下面是 YouTube 链接)[：:]/.test(
+  return /^\s*[•\-]?\s*(标题|主题|嘉宾|演讲者|主持人|频道|来源|日期|更新时间|标签|链接|播客地址|观看量|YouTube|YouTube 链接|下面是 YouTube 链接)[：:]/.test(
     text
   );
 }
