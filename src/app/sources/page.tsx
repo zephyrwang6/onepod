@@ -36,15 +36,32 @@ function SourceSection({
             key={`${title}-${source.url}`}
             className="grid gap-3 py-5 md:grid-cols-[210px_minmax(0,1fr)_minmax(220px,0.72fr)] md:gap-8"
           >
-            <div className="min-w-0">
-              <h3 className="truncate text-[16px] font-bold leading-snug text-[#20251f]">
-                {source.name}
-              </h3>
-              {source.count ? (
-                <div className="mt-1 text-[12px] font-semibold text-[#9aa299]">
-                  {source.count} episodes
-                </div>
-              ) : null}
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-[#d8ddd6] ring-1 ring-[#20251f]/8">
+                {source.avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={source.avatarUrl}
+                    alt={source.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-[13px] font-bold text-[#6e786c]">
+                    {source.name.slice(0, 1)}
+                  </div>
+                )}
+              </div>
+              <div className="min-w-0">
+                <h3 className="truncate text-[16px] font-bold leading-snug text-[#20251f]">
+                  {source.name}
+                </h3>
+                {source.count ? (
+                  <div className="mt-1 text-[12px] font-semibold text-[#9aa299]">
+                    {source.count} episodes
+                  </div>
+                ) : null}
+              </div>
             </div>
             <p className="text-[14px] leading-[1.75] text-[#535d52]">
               {source.description}

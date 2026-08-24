@@ -13,14 +13,18 @@ export type HomePodcast = Pick<
   | "ytChannel"
 >;
 
-function formatCreatedAt(createdAt?: number): string {
-  if (!createdAt) return "未知时间";
+function getDateCode(podcast: HomePodcast): string {
+  const match = podcast.rawTitle.match(/^(\d{4})[：:\s-]/);
+  if (match) return match[1];
 
-  return new Intl.DateTimeFormat("zh-CN", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(createdAt * 1000));
+  return podcast.createdAt
+    ? new Intl.DateTimeFormat("zh-CN", {
+        month: "2-digit",
+        day: "2-digit",
+      })
+        .format(new Date(podcast.createdAt * 1000))
+        .replace("/", "")
+    : "----";
 }
 
 function getChannel(podcast: HomePodcast): string {
@@ -143,7 +147,7 @@ export default function HomePodcastCard({ podcast }: { podcast: HomePodcast }) {
         <div className="flex min-h-0 flex-1 flex-col px-3.5 py-3 md:px-5 md:py-4">
           <div className="mb-2 flex items-center justify-between gap-2 font-[family-name:var(--font-ui)] text-[10.5px] uppercase tracking-[0.08em] text-[#7d887c] md:mb-3 md:text-[11.5px]">
             <span className="truncate">{getChannel(podcast)}</span>
-            <span className="shrink-0">{formatCreatedAt(podcast.createdAt)}</span>
+            <span className="shrink-0">{getDateCode(podcast)}</span>
           </div>
 
           <h2 className="line-clamp-3 font-[family-name:var(--font-display)] text-[15px] font-semibold leading-[1.25] text-[#20251f] md:text-[18px] xl:text-[20px]">

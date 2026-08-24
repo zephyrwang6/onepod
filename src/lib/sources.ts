@@ -5,6 +5,7 @@ export interface SourceItem {
   description: string;
   url: string;
   count?: number;
+  avatarUrl?: string;
 }
 
 const PODCAST_DESCRIPTIONS: Record<string, string> = {
@@ -61,6 +62,30 @@ const CHANNEL_NAME_ALIASES: Record<string, string> = {
   "Stanford Graduate School of Business": "Stanford GSB",
 };
 
+const PODCAST_AVATARS: Record<string, string> = {
+  "Andrej Karpathy": "https://yt3.googleusercontent.com/ytc/AIdro_nDvyq2NoPL626bk1IbxQ94SfQsD-B0qgZchghtQNkLWoEz=s900-c-k-c0x00ffffff-no-rj",
+  Anthropic: "https://yt3.googleusercontent.com/ux-GXUpB4PkI-qXVOpj9gGEiCkytT0Q78ka4srlxOm_Y3m1gEh5qy8Vu6vTjGSDztMT0NybtC7I=s900-c-k-c0x00ffffff-no-rj",
+  "Lex Fridman": "https://yt3.googleusercontent.com/ytc/AIdro_ljfMy9kUR1PH9VRf-XsTsPqFMgORC_zodOQVEAm4hx36lC=s900-c-k-c0x00ffffff-no-rj",
+  "Lenny's Podcast": "https://yt3.googleusercontent.com/Wk7-4UW17JqDXgVWDiE7s1gJxDkt_UwNa2oNw8OYRwc9deiCv2V2fFAdNgByDi0K9AAF0YMj=s900-c-k-c0x00ffffff-no-rj",
+  "Peter Yang": "https://yt3.googleusercontent.com/ytc/AIdro_k0xbR9-CBYMh3YOZJnMQr00qwnbA_aAChW3z0I8lNcGRE=s900-c-k-c0x00ffffff-no-rj",
+  "The MAD Podcast (Matt Turck)": "https://yt3.googleusercontent.com/zELsyYmenYTQanNFH9Vti3fuVN2Dkky0AGvVlMLUeTvssEiWIdIKKmwNxtrgmAKWGeN4F9RnNIc=s900-c-k-c0x00ffffff-no-rj",
+  Every: "https://yt3.googleusercontent.com/n6p0RudkPKoaFsxiZfunvI5MpqS443Qfbf2E4mmAy1k0etF4M7etYyJAJ_RMknfit6Tnxx4Du4g=s900-c-k-c0x00ffffff-no-rj",
+  "Y Combinator": "https://yt3.googleusercontent.com/dGyATx87Fp_s1nZvnupUFSnMqbAPZ6nqRby9Esk1m6YE41iBq-9Z8iGoIgHTCT9SiDBUpP2V=s900-c-k-c0x00ffffff-no-rj",
+  "Latent Space": "https://yt3.googleusercontent.com/pSTHcffCXEverYEPdjM0iIRPH-IUT4d2biIMZ_Z7bhyf6sME-laFer9vEfpFbM5tqFYJV-UsLQ=s900-c-k-c0x00ffffff-no-rj",
+  "South Park Commons": "https://yt3.googleusercontent.com/rTHi9Q-VulPPgZLDdamX57N_db9TognfYKHMG9liMbpFmSNAA5hTm7nyU0QLXgfU3E50LurN3wE=s900-c-k-c0x00ffffff-no-rj",
+  "No Priors": "https://yt3.googleusercontent.com/HQXIpkLms_iVMi_Ob5Cie3PNcZ3smOT7HeNLIAWvBO-lZMdiax2N5LH1blWMxUtMrJCcXyNZ=s900-c-k-c0x00ffffff-no-rj",
+  a16z: "https://yt3.googleusercontent.com/hkiO7UAtALrbqOcewo4CIrbd0j8XDeWttKkdtihfX1emeV4iUMwjIe1KKn4zd6wT2OOwANDnIA=s900-c-k-c0x00ffffff-no-rj",
+  "Google DeepMind": "https://yt3.googleusercontent.com/xofhdRNoyqgAB_YpJgAQeasGtE6gTEXpR2v1vyMmtqlRCmoEUIsTGJcavUORLhhKQk3b9UeUFw=s900-c-k-c0x00ffffff-no-rj",
+  "Google for Developers": "https://yt3.googleusercontent.com/WZ_63J_-745xyW_DGxGi3VUyTZAe0Jvhw2ZCg7fdz-tv9esTbNPZTFR9X79QzA0ArIrMjYJCDA=s900-c-k-c0x00ffffff-no-rj",
+  "Stanford GSB": "https://yt3.googleusercontent.com/ytc/AIdro_lWoHJNSE1UPPiFdCG4_aQZ1apKXrKI7nZ_sFlKwhNwRl0=s900-c-k-c0x00ffffff-no-rj",
+  "Mckay Wrigley": "https://yt3.googleusercontent.com/ytc/AIdro_m114mcpiz4WMxjxkci1z8z3XXCP64yYoL2Z4wsjM2bNdWO=s900-c-k-c0x00ffffff-no-rj",
+  "Tiago Forte": "https://yt3.googleusercontent.com/CqC4SrpXMCHA9b39JDtbXxefJ0TlHmaxFpAxSKqDCBVIudLl50gtlYA5fmIIGFlc4mjE1-uw6w=s900-c-k-c0x00ffffff-no-rj",
+  "The Pragmatic Engineer": "https://yt3.googleusercontent.com/ytc/AIdro_mzrMszjXcIm7EdsK_QfN9Pk7YXbiXj9fihf86JaB8=s900-c-k-c0x00ffffff-no-rj",
+  "The AI Daily Brief": "https://yt3.googleusercontent.com/kNdRN_Aa_xXvA1Y2KxcephehAzzbvyYbnm2xGg7MjUZ11yHpVah2GqsprxIXlA57uhdl97yF=s900-c-k-c0x00ffffff-no-rj",
+  TBPN: "https://yt3.googleusercontent.com/1QdlbXwJRXYY6leF-ULTE8ahNmTYEgezebSqVDZqI2DLGSkRCCcvcUtdkAhOj5mLB8C0AK_J=s900-c-k-c0x00ffffff-no-rj",
+  "Brett Malinowski": "https://yt3.googleusercontent.com/jVlCb_H_mcYd9UkwcSLvoTDG3SRTobvGUQ22PLtogxFGJpbbXOVXhdzY9wULJe6hVLFbfdu2vQ=s900-c-k-c0x00ffffff-no-rj",
+};
+
 export function getPodcastSources(podcasts: Podcast[]): SourceItem[] {
   const counts = new Map<string, number>();
 
@@ -75,6 +100,7 @@ export function getPodcastSources(podcasts: Podcast[]): SourceItem[] {
     name,
     url: `https://www.youtube.com/${handle}`,
     count: counts.get(name) || 0,
+    avatarUrl: PODCAST_AVATARS[name],
     description:
       PODCAST_DESCRIPTIONS[name] ||
       "podcast-workflow / youtube-feed skill 中配置的海外 AI、科技、创业播客信源。",
