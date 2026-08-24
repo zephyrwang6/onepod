@@ -25,9 +25,9 @@ export default function HomeTabs({
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:justify-end">
             <Link
               href="/sources"
-              className="order-2 w-fit text-[13px] font-semibold text-[#7d887c] no-underline transition hover:text-[#20251f] sm:order-none"
+              className="order-2 w-fit font-[family-name:var(--font-display)] text-[22px] font-semibold leading-none text-[#20251f] no-underline transition hover:text-[#5b6a57] sm:order-none md:text-[28px]"
             >
-              信源
+              播客列表
             </Link>
 
             <div className="hidden text-right text-[12px] uppercase tracking-[0.12em] text-[#7d887c] sm:block">

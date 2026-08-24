@@ -38,6 +38,12 @@ export default function MobileHeader({
         <span className="font-[family-name:var(--font-display)] text-base font-semibold text-white">
           Onepod
         </span>
+        <Link
+          href="/sources"
+          className="ml-auto text-[13px] font-semibold text-white/70 no-underline transition hover:text-white"
+        >
+          播客列表
+        </Link>
       </header>
 
       {open && (

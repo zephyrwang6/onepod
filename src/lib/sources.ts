@@ -31,6 +31,27 @@ const PODCAST_DESCRIPTIONS: Record<string, string> = {
   "The AI Daily Brief": "每日 AI 新闻、产品动态和行业趋势。",
   TBPN: "科技商业、AI 创业和硅谷实时讨论。",
   "Brett Malinowski": "AI 工具、自动化和创业机会拆解。",
+  "Invest Like the Best": "投资人和公司创始人的长期主义访谈，覆盖科技、商业模式和资本配置。",
+  "The All-In Podcast": "硅谷投资人和创业者围绕 AI、科技政策、资本市场和商业趋势的圆桌讨论。",
+  Acquired: "用长篇公司史拆解伟大科技公司、商业模式和创始人决策。",
+  "CNBC Television": "全球商业、科技公司、市场和宏观经济的即时视频内容。",
+  "Dwarkesh Patel": "AI 研究者、创业者和思想家的长访谈，偏技术前沿和长期判断。",
+  "Core Memory (Ashlee Vance)": "Ashlee Vance 主持的科技人物和硬科技公司访谈。",
+  "Joseph Noel Walker": "科技、社会、科学和商业人物的深度访谈。",
+  "The Information Bottleneck": "围绕 AI、信息理论、机器学习和研究进展的高密度讨论。",
+  "How I Write (David Perell)": "创作者、写作者和创业者关于表达、内容和个人知识系统的访谈。",
+  "Huberman Lab": "神经科学、健康、认知表现和行为科学的长内容。",
+  "Big Technology": "Alex Kantrowitz 主持的科技新闻与大公司访谈，常覆盖 AI、平台和硅谷权力结构。",
+  "Hard Fork": "纽约时报科技播客，追踪 AI、平台、监管和消费科技的最新变化。",
+  "AI Engineer": "面向 AI 工程师、创始人和研究者的会议演讲与技术访谈。",
+  "20VC with Harry Stebbings": "Harry Stebbings 主持的 VC、创业融资、AI 公司和增长访谈。",
+  "Real Vision": "宏观、市场、科技投资和风险资产的深度访谈。",
+  "Patrick Boyle": "用金融和商业视角拆解市场、科技泡沫、宏观和资本结构。",
+  "David Senra": "与创始人对话，提炼创业史、公司建设和商业判断。",
+  "Goldman Sachs": "高盛关于市场、科技投资、AI 资本开支和宏观趋势的公开观点。",
+  Stratechery: "Ben Thompson 对科技平台、商业模式、AI 和产业结构的策略分析。",
+  "Sequoia Capital": "Sequoia 的创业、AI builder 和技术公司访谈，包括 Training Data 系列。",
+  "Product Pathways": "面向产品经理和 AI 产品构建者的产品方法、组织和实战讨论。",
 };
 
 const PODCAST_SKILL_CHANNELS = [
@@ -55,12 +76,44 @@ const PODCAST_SKILL_CHANNELS = [
   ["The AI Daily Brief", "@TheAIDailyBrief"],
   ["TBPN", "@TBPNLive"],
   ["Brett Malinowski", "@TheBrettWay"],
+  ["Invest Like the Best", "@ILTB_Podcast"],
+  ["The All-In Podcast", "@allin"],
+  ["Acquired", "@AcquiredFM"],
+  ["CNBC Television", "@CNBCtelevision"],
+  ["Dwarkesh Patel", "@DwarkeshPatel"],
+  ["Core Memory (Ashlee Vance)", "@CoreMemoryVideos"],
+  ["Joseph Noel Walker", "@josephnoelwalker"],
+  ["The Information Bottleneck", "@information_bottleneck"],
+  ["How I Write (David Perell)", "@DavidPerellChannel"],
+  ["Huberman Lab", "@hubermanlab"],
+  ["Big Technology", "@BigTechnologyPodcast"],
+  ["Hard Fork", "@hardfork"],
+  ["AI Engineer", "@aiDotEngineer"],
+  ["20VC with Harry Stebbings", "@20VC"],
+  ["Real Vision", "@RealVisionFinance"],
+  ["Patrick Boyle", "@PBoyle"],
+  ["David Senra", "@DavidSenra"],
+  ["Goldman Sachs", "@GoldmanSachs"],
+  ["Stratechery", "@Stratechery"],
+  ["Sequoia Capital", "channel/UCWrF0oN6unbXrWsTN7RctTw"],
+  ["Product Pathways", "channel/UCFHnDTQrRshnLzLUJ3mvGQQ"],
 ] as const;
 
 const CHANNEL_NAME_ALIASES: Record<string, string> = {
   "The MAD Podcast with Matt Turck": "The MAD Podcast (Matt Turck)",
   "Stanford Graduate School of Business": "Stanford GSB",
+  "All-In Podcast": "The All-In Podcast",
+  "All-In with Chamath, Jason, Sacks & Friedberg": "The All-In Podcast",
+  "The Twenty Minute VC (20VC): Venture Capital | Startup Funding | The Pitch": "20VC with Harry Stebbings",
+  "20VC with Harry Stebbings": "20VC with Harry Stebbings",
+  "Latent Space: The AI Engineer Podcast": "Latent Space",
 };
+
+export function normalizePodcastChannelName(name: string | null | undefined): string {
+  if (!name) return "";
+  const trimmed = name.trim();
+  return CHANNEL_NAME_ALIASES[trimmed] || trimmed;
+}
 
 const PODCAST_AVATARS: Record<string, string> = {
   "Andrej Karpathy": "https://yt3.googleusercontent.com/ytc/AIdro_nDvyq2NoPL626bk1IbxQ94SfQsD-B0qgZchghtQNkLWoEz=s900-c-k-c0x00ffffff-no-rj",
@@ -84,6 +137,27 @@ const PODCAST_AVATARS: Record<string, string> = {
   "The AI Daily Brief": "https://yt3.googleusercontent.com/kNdRN_Aa_xXvA1Y2KxcephehAzzbvyYbnm2xGg7MjUZ11yHpVah2GqsprxIXlA57uhdl97yF=s900-c-k-c0x00ffffff-no-rj",
   TBPN: "https://yt3.googleusercontent.com/1QdlbXwJRXYY6leF-ULTE8ahNmTYEgezebSqVDZqI2DLGSkRCCcvcUtdkAhOj5mLB8C0AK_J=s900-c-k-c0x00ffffff-no-rj",
   "Brett Malinowski": "https://yt3.googleusercontent.com/jVlCb_H_mcYd9UkwcSLvoTDG3SRTobvGUQ22PLtogxFGJpbbXOVXhdzY9wULJe6hVLFbfdu2vQ=s900-c-k-c0x00ffffff-no-rj",
+  "Invest Like the Best": "https://yt3.googleusercontent.com/78AMaBuqLsXiEDcsRDGdorTMEOJR9_ybvMKZ5dwtqnj_POrIzHMmRUsBy5da255luUCsd9fA=s900-c-k-c0x00ffffff-no-rj",
+  "The All-In Podcast": "https://yt3.googleusercontent.com/ytc/AIdro_nPfH_2C5hQamMDz9i_b5mcFXYzym_qSV6mQqa6GQ=s900-c-k-c0x00ffffff-no-rj",
+  Acquired: "https://yt3.googleusercontent.com/T76mIN42SrBDYIJDuBsJ-_zCkkoV37vhZ-VAsUx0rPb5YCzr99l1vzXMUsNTP9ZQsN6e-RxI=s900-c-k-c0x00ffffff-no-rj",
+  "CNBC Television": "https://yt3.googleusercontent.com/ytc/AIdro_lZSh1UFSJgpq7hCgJp4W72-gZ1Fc6Lh5wN7hQOGk7LvVw=s900-c-k-c0x00ffffff-no-rj",
+  "Dwarkesh Patel": "https://yt3.googleusercontent.com/Xhx80as-0fhg_Ag59pOnrTQvbf6zGbFDgxWhYUWYR77GMYQXUVJpRxeWyPyQm2fJhA-qw1ao=s900-c-k-c0x00ffffff-no-rj",
+  "Core Memory (Ashlee Vance)": "https://yt3.googleusercontent.com/2y1DAilVrHF9KEtSAxsKu7uVfGGa5ZQys0HVECGhFSbENPQ4ifLKAHgInkg2HIrAwRUAiPX3=s900-c-k-c0x00ffffff-no-rj",
+  "Joseph Noel Walker": "https://yt3.googleusercontent.com/uGltCcucH3lJaaL4NpGKCGmfkxVvOs5oi1vJG_XBv8tkoDEYF0FtGzEx4LRm-nKH4KCG7yQy=s900-c-k-c0x00ffffff-no-rj",
+  "The Information Bottleneck": "https://yt3.googleusercontent.com/EbwDzvpWpmaANk7zXT0pGg7VsuKMnr0pzUyPOZ4taaxwFNClImJVfkajSeziUxmGMksaQMlUTw=s900-c-k-c0x00ffffff-no-rj",
+  "How I Write (David Perell)": "https://yt3.googleusercontent.com/kPbhWUm1xRu12N3Y6Ct1RvMeRqQDj2jSqznUhR312hwdMYlW9QaZLcZTMfSjxn7IcuwQPJo-=s900-c-k-c0x00ffffff-no-rj",
+  "Huberman Lab": "https://yt3.googleusercontent.com/aIeHXiBl7R6DEQd8DAVpNBS9oWSUqajmfKNpIaBBK2Il8BrQHyAMsgYVi3tNtLb_xLud7l3t=s900-c-k-c0x00ffffff-no-rj",
+  "Big Technology": "https://yt3.googleusercontent.com/DxVHHiAYSavR5rIwm4EUzZ7Z8nyIHaQn-QB_4r_bNEeU2jXQBp9Gcb6Vz24HWG7XIWW9Yd1YFg=s900-c-k-c0x00ffffff-no-rj",
+  "Hard Fork": "https://yt3.googleusercontent.com/11kb6ShkX3k0W3_NQhogENqJB4BpJEssk4tdeqNOxLbsShQDgUTIwF6NVdsCm_IbCq5jqCM1=s900-c-k-c0x00ffffff-no-rj",
+  "AI Engineer": "https://yt3.googleusercontent.com/ajVemEB89DAOemsbfuMY6ZOWXJAACx3cbty9z21jeqRKODaVkDBSRun1b1xfQJljEsziOWS_Mg=s900-c-k-c0x00ffffff-no-rj",
+  "20VC with Harry Stebbings": "https://yt3.googleusercontent.com/Du3wg7EZp9LaKFfVcOuKbEn0xFPryiiQgGQ9sJ9u11UCOmAAhp_5g9x9w1Fux5ijjfqb0COq=s900-c-k-c0x00ffffff-no-rj",
+  "Real Vision": "https://yt3.googleusercontent.com/AB1DrmCzUFAlZSzlYhxQArRe2_Uwg4SewQlXcwvht9VmF95Bc-_Wje_rprG4HYE9cBO0cyvh=s900-c-k-c0x00ffffff-no-rj",
+  "Patrick Boyle": "https://yt3.googleusercontent.com/cq4tU8wKdp_Y7yZIBxwAsSzecE-3VYDLkRXGo08-FuFwP_fwl7aMDTWY-_OEWGSw5iWDu-S29w=s900-c-k-c0x00ffffff-no-rj",
+  "David Senra": "https://yt3.googleusercontent.com/2yUUt7GiVvaIvJFypoy-IjPbfwpe9dfYlYfr0mI03b3BYN6MqJGbdFpNgdDbYH4F3uuB5aYmpg=s900-c-k-c0x00ffffff-no-rj",
+  "Goldman Sachs": "https://yt3.googleusercontent.com/DPQOZV-Fjm88XC9XBA1YwhB3LiaXRfdr0ZysHVl2PTP2fSNSesBm6pk9HwTUUC73M05x7ZkJIug=s900-c-k-c0x00ffffff-no-rj",
+  Stratechery: "https://yt3.googleusercontent.com/G3KKbnKufJOIVSn2K-p-4DrmYkR50LHZileEND4IhJ38sLdznQIYOUShN7qqvG1G5vPvB63Mml8=s900-c-k-c0x00ffffff-no-rj",
+  "Sequoia Capital": "https://yt3.googleusercontent.com/uCN-D7KzMQY-Ti-xTsNAwilXVFFMYjEBRju_mXrR22HUYxJZjVZgP_SnamO9KbPo2XN-nE3O-A=s900-c-k-c0x00ffffff-no-rj",
+  "Product Pathways": "https://yt3.googleusercontent.com/nbYOlBIdjOt7d0sNBZIAA56CLWF3BpJA0oc6Z1zcP2Sadxczv6xxG863c4XjaOU9ppywgDdSyV4=s900-c-k-c0x00ffffff-no-rj",
 };
 
 export function getPodcastSources(podcasts: Podcast[]): SourceItem[] {
@@ -92,7 +166,7 @@ export function getPodcastSources(podcasts: Podcast[]): SourceItem[] {
   for (const podcast of podcasts) {
     const name = podcast.ytChannel?.trim();
     if (!name) continue;
-    const normalized = CHANNEL_NAME_ALIASES[name] || name;
+    const normalized = normalizePodcastChannelName(name);
     counts.set(normalized, (counts.get(normalized) || 0) + 1);
   }
 
@@ -103,7 +177,7 @@ export function getPodcastSources(podcasts: Podcast[]): SourceItem[] {
     avatarUrl: PODCAST_AVATARS[name],
     description:
       PODCAST_DESCRIPTIONS[name] ||
-      "podcast-workflow / youtube-feed skill 中配置的海外 AI、科技、创业播客信源。",
+      "podcast-workflow / youtube-feed skill 中配置的海外 AI、科技、创业播客。",
   })).sort((a, b) => {
     const countDiff = (b.count || 0) - (a.count || 0);
     if (countDiff !== 0) return countDiff;

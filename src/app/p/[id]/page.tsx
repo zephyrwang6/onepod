@@ -62,24 +62,32 @@ export default async function PodcastPage({
 
       <main className="flex-1 h-screen overflow-y-auto px-6 py-12 md:px-12 md:py-12 main-scroll pt-[76px] md:pt-12">
         <div className="mx-auto flex w-full max-w-[680px] flex-col gap-4">
-          <Link
-            href="/"
-            className="inline-flex h-9 w-fit items-center gap-2 rounded-full bg-white/15 px-3.5 text-[13px] font-medium text-white/80 no-underline backdrop-blur-md transition hover:bg-white/24 hover:text-white"
-          >
-            <svg
-              className="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <div className="flex flex-wrap gap-2">
+            <Link
+              href="/"
+              className="inline-flex h-9 w-fit items-center gap-2 rounded-full bg-white/15 px-3.5 text-[13px] font-medium text-white/80 no-underline backdrop-blur-md transition hover:bg-white/24 hover:text-white"
             >
-              <path d="M19 12H5" />
-              <path d="M12 19l-7-7 7-7" />
-            </svg>
-            首页
-          </Link>
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5" />
+                <path d="M12 19l-7-7 7-7" />
+              </svg>
+              首页
+            </Link>
+            <Link
+              href="/sources"
+              className="inline-flex h-9 w-fit items-center gap-2 rounded-full bg-white/15 px-3.5 text-[13px] font-medium text-white/80 no-underline backdrop-blur-md transition hover:bg-white/24 hover:text-white"
+            >
+              播客列表
+            </Link>
+          </div>
           <ArticleCard
             podcast={podcast}
             nextPodcast={next}

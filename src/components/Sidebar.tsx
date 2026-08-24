@@ -111,6 +111,12 @@ export default function Sidebar({
       </nav>
 
       <div className="px-7 py-5 shrink-0">
+        <Link
+          href="/sources"
+          className="mb-3 block text-[13px] font-semibold text-white/45 no-underline transition hover:text-white/80"
+        >
+          播客列表
+        </Link>
         <div className="text-[11px] text-white/20 tracking-wide">
           {podcasts.length} episodes
         </div>
