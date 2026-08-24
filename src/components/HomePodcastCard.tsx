@@ -1,8 +1,17 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import type { Podcast } from "@/lib/types";
+
+export type HomePodcast = Pick<
+  Podcast,
+  | "id"
+  | "title"
+  | "rawTitle"
+  | "createdAt"
+  | "youtubeId"
+  | "intro"
+  | "highlights"
+  | "ytChannel"
+>;
 
 function formatCreatedAt(createdAt?: number): string {
   if (!createdAt) return "未知时间";
@@ -14,7 +23,7 @@ function formatCreatedAt(createdAt?: number): string {
   }).format(new Date(createdAt * 1000));
 }
 
-function getChannel(podcast: Podcast): string {
+function getChannel(podcast: HomePodcast): string {
   if (podcast.ytChannel) return podcast.ytChannel;
 
   const sourceMatch = podcast.intro
@@ -48,20 +57,6 @@ function cleanSummaryLine(line: string): string {
     .trim();
 }
 
-function splitContentLines(text: string): string[] {
-  return text
-    .split(/\n|。|！|？|；/g)
-    .map(cleanSummaryLine)
-    .filter((line) => {
-      if (line.length < 16) return false;
-      if (/^https?:\/\//.test(line)) return false;
-      if (/^(核心观点|精华片段|精彩片段|精选|总结一下|下面是)/.test(line)) {
-        return false;
-      }
-      return true;
-    });
-}
-
 function scoreLine(line: string): number {
   const sharpSignals = [
     "真正",
@@ -90,12 +85,18 @@ function scoreLine(line: string): number {
   );
 }
 
-function getSharpSummary(podcast: Podcast): string {
+function getSharpSummary(podcast: HomePodcast): string {
   const candidates = [
-    ...splitContentLines(podcast.fullText || ""),
     ...podcast.highlights.map(cleanSummaryLine),
     ...podcast.intro.map(cleanSummaryLine),
-  ].filter(Boolean);
+  ].filter((line) => {
+    if (!line || line.length < 16) return false;
+    if (/^https?:\/\//.test(line)) return false;
+    if (/^(核心观点|精华片段|精彩片段|精选|总结一下|下面是)/.test(line)) {
+      return false;
+    }
+    return true;
+  });
 
   const uniqueCandidates = Array.from(new Set(candidates));
   const selected = uniqueCandidates
@@ -113,11 +114,10 @@ function getSharpSummary(podcast: Podcast): string {
   return `${normalized.slice(0, 188).replace(/[，、；：:,.。\s]+$/g, "")}...`;
 }
 
-export default function HomePodcastCard({ podcast }: { podcast: Podcast }) {
-  const initialCoverUrl = podcast.youtubeId
+export default function HomePodcastCard({ podcast }: { podcast: HomePodcast }) {
+  const coverUrl = podcast.youtubeId
     ? `https://img.youtube.com/vi/${podcast.youtubeId}/hqdefault.jpg`
     : null;
-  const [coverUrl, setCoverUrl] = useState(initialCoverUrl);
 
   return (
     <Link
@@ -135,7 +135,6 @@ export default function HomePodcastCard({ podcast }: { podcast: Podcast }) {
               src={coverUrl}
               alt={podcast.title}
               className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
-              onError={() => setCoverUrl(null)}
             />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />

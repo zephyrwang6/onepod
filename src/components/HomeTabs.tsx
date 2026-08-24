@@ -1,13 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import HomePodcastCard from "@/components/HomePodcastCard";
-import type { Podcast } from "@/lib/types";
+import HomePodcastCard, { type HomePodcast } from "@/components/HomePodcastCard";
 
 export default function HomeTabs({
   podcasts,
 }: {
-  podcasts: Podcast[];
+  podcasts: HomePodcast[];
 }) {
   return (
     <main
