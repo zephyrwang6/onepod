@@ -62,6 +62,16 @@ interface YoutubeMeta {
   ytPublished: string | null;
 }
 
+interface FeishuTokenResponse {
+  tenant_access_token?: string;
+}
+
+interface YoutubeOembedResponse {
+  title?: string;
+  author_name?: string;
+  author_url?: string;
+}
+
 async function getTenantToken(): Promise<string> {
   const appId = process.env.FEISHU_APP_ID;
   const appSecret = process.env.FEISHU_APP_SECRET;
@@ -76,11 +86,10 @@ async function getTenantToken(): Promise<string> {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ app_id: appId, app_secret: appSecret }),
-      cache: "no-store",
     }
   );
 
-  const data = await resp.json();
+  const data = (await resp.json()) as FeishuTokenResponse;
   if (!data.tenant_access_token) {
     throw new Error(`Failed to get Feishu token: ${JSON.stringify(data)}`);
   }
@@ -139,7 +148,6 @@ async function getChildNodes(token: string): Promise<FeishuNode[]> {
       url,
       {
         headers: { Authorization: `Bearer ${token}` },
-        cache: "no-store",
       },
       "Fetch child nodes"
     );
@@ -174,7 +182,7 @@ async function getDocBlocks(
 
     const result = await fetchFeishuJson<FeishuPageData<FeishuBlock>>(
       url,
-      { headers, cache: "no-store" },
+      { headers },
       `Fetch blocks for ${objToken}`
     );
 
@@ -308,11 +316,10 @@ async function fetchYoutubeMeta(videoId: string | null): Promise<YoutubeMeta> {
   try {
     const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
     const resp = await fetch(oembedUrl, {
-      cache: "no-store",
       signal: AbortSignal.timeout(1500),
     });
     if (resp.ok) {
-      const data = await resp.json();
+      const data = (await resp.json()) as YoutubeOembedResponse;
       meta.ytTitle = data.title || null;
       meta.ytChannel = data.author_name || null;
       meta.ytChannelUrl = data.author_url || null;
@@ -334,7 +341,6 @@ async function fetchYoutubeMeta(videoId: string | null): Promise<YoutubeMeta> {
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
         "Accept-Language": "en-US,en;q=0.9",
       },
-      cache: "no-store",
     });
     const html = await resp.text();
 

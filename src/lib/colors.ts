@@ -46,3 +46,8 @@ export function getColorForPodcast(id: string, index: number) {
   const idx = (hashString(id) + index) % PALETTE.length;
   return PALETTE[idx];
 }
+
+export function getColorForKey(key: string, index = 0) {
+  const idx = (hashString(key) + index) % PALETTE.length;
+  return PALETTE[idx];
+}

@@ -56,13 +56,13 @@ async function fetchFeishuJson(url, options, label) {
   throw lastError;
 }
 
-async function getChildNodes(token) {
+async function getChildNodes(token, parentNode = PARENT_NODE) {
   const nodes = [];
   let pageToken = "";
 
   while (true) {
     const params = new URLSearchParams({
-      parent_node_token: PARENT_NODE,
+      parent_node_token: parentNode,
       page_size: "50",
     });
     if (pageToken) params.set("page_token", pageToken);
@@ -391,6 +391,67 @@ async function syncPodcasts(env) {
   return meta;
 }
 
+async function syncPodcastsOnly(env) {
+  const token = await getTenantToken(env);
+  return syncPodcastsWithToken(env, token);
+}
+
+async function syncPodcastsWithToken(env, token) {
+  if (!env.ONEPOD_CACHE) {
+    throw new Error("ONEPOD_CACHE KV binding is missing");
+  }
+
+  const startedAt = Date.now();
+  const cacheKey = env.ONEPOD_CACHE_KEY || DEFAULT_CACHE_KEY;
+  const batchSize = Number(env.SYNC_BATCH_SIZE || DEFAULT_BATCH_SIZE);
+  const [previousPodcasts, previousMeta] = await Promise.all([
+    env.ONEPOD_CACHE.get(cacheKey, "json"),
+    env.ONEPOD_CACHE.get(META_KEY, "json"),
+  ]);
+  const existingPodcasts = Array.isArray(previousPodcasts)
+    ? previousPodcasts
+    : [];
+  const existingById = new Map(
+    existingPodcasts.map((podcast) => [podcast.id, podcast])
+  );
+  const children = await getChildNodes(token);
+  children.sort((a, b) => getNodeCreatedAt(b) - getNodeCreatedAt(a));
+  const { selected, missingCount, nextCursor } = getBatchChildren(
+    children,
+    existingById,
+    previousMeta,
+    batchSize
+  );
+
+  const refreshedPodcasts = await mapWithConcurrency(selected, 3, (child) =>
+    buildPodcastFromNode(token, child, existingById.get(child.node_token))
+  );
+
+  for (const podcast of refreshedPodcasts) {
+    existingById.set(podcast.id, podcast);
+  }
+
+  const podcasts = children
+    .map((child) => existingById.get(child.node_token))
+    .filter(Boolean);
+  const meta = {
+    ok: true,
+    source: "feishu-batch",
+    count: podcasts.length,
+    totalNodes: children.length,
+    processed: refreshedPodcasts.length,
+    missingBeforeSync: missingCount,
+    nextCursor,
+    hasFullCoverage: podcasts.length === children.length,
+    syncedAt: new Date().toISOString(),
+    durationMs: Date.now() - startedAt,
+  };
+
+  await env.ONEPOD_CACHE.put(cacheKey, JSON.stringify(podcasts));
+  await env.ONEPOD_CACHE.put(META_KEY, JSON.stringify(meta));
+  return meta;
+}
+
 function json(data, init = {}) {
   return new Response(JSON.stringify(data, null, 2), {
     ...init,
@@ -413,7 +474,7 @@ const worker = {
       }
 
       try {
-        return json(await syncPodcasts(env));
+        return json(await syncPodcastsOnly(env));
       } catch (error) {
         return json(
           { ok: false, error: error instanceof Error ? error.message : error },
@@ -431,7 +492,7 @@ const worker = {
   },
 
   async scheduled(_event, env, ctx) {
-    ctx.waitUntil(syncPodcasts(env));
+    ctx.waitUntil(syncPodcastsOnly(env));
   },
 };
 
